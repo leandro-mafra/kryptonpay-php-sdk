@@ -3,12 +3,18 @@
     "type": "library",
     "description": "Integração com API Krypton Pay em PHP",
     "homepage": "https://kryptonpay.com.br/",
-    "keywords": ["Krypton Pay", "composer", "package"],
+    "keywords": [
+        "Krypton Pay",
+        "composer",
+        "package"
+    ],
     "license": "MIT",
-    "authors": [{
-        "name": "Kryptonpay Sistemas de Pagamento",
-        "email": "dev@kryptonpay.com.br"
-    }],
+    "authors": [
+        {
+            "name": "Kryptonpay Sistemas de Pagamento",
+            "email": "dev@kryptonpay.com.br"
+        }
+    ],
     "prefer-stable": true,
     "minimum-stability": "dev",
     "require": {
