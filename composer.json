@@ -16,7 +16,7 @@
         }
     ],
     "prefer-stable": true,
-    "minimum-stability": "dev",
+    "minimum-stability": "beta",
     "require": {
         "php": ">=7.2",
         "nesbot/carbon": "^2.28",
