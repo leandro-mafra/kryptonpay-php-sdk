@@ -15,10 +15,10 @@
             "email": "dev@kryptonpay.com.br"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "1.0",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.0",
         "nesbot/carbon": "^2.28",
         "guzzlehttp/guzzle": "^6.0",
         "symfony/serializer": "^5.0",
