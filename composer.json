@@ -15,7 +15,7 @@
             "email": "dev@kryptonpay.com.br"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "1.0",
     "prefer-stable": true,
     "require": {
         "php": ">=7.0",
