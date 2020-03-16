@@ -1,6 +1,7 @@
 <?php namespace KryptonPay\Models\Transaction;
 
 use KryptonPay\Models\DefaultModel;
+use KryptonPay\Models\Transaction\Endereco;
 
 class Pagador extends DefaultModel
 {
