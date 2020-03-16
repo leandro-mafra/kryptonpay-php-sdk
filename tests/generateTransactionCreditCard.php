@@ -80,7 +80,6 @@ try {
     $recompense = $transactions->generateTransactionCreditCard($data);
 
     dd($recompense);
-
 } catch (\Exception $e) {
-    echo ($e->getMessage());
+    echo($e->getMessage());
 }

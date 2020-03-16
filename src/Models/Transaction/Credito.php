@@ -93,5 +93,4 @@ class Credito extends DefaultModel
     {
         $this->endereco = new Endereco();
     }
-
 }

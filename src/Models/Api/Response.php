@@ -4,19 +4,18 @@ use KryptonPay\Models\DefaultModel;
 
 class Response extends DefaultModel
 {
-     /**
-     *@var int code HTTP
-     */
+    /**
+    *@var int code HTTP
+    */
     public $code;
 
-     /**
-     *@var int errorCode
-     */
+    /**
+    *@var int errorCode
+    */
     public $errorCode;
 
-     /**
-     *@var array messages
-     */
+    /**
+    *@var array messages
+    */
     public $messages;
-
 }

@@ -26,7 +26,6 @@ class KryptonPay
     {
         $api = new Api($this->settings, 'GET', 'transactions?referencia=' . $id);
         return $api->send();
-
     }
 
     public function generateTransactionCreditCard(array $data)

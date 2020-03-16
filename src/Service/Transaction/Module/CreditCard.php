@@ -39,6 +39,5 @@ class CreditCard extends Transaction
         $this->transacao->cartao->credito->endereco->uf = (!empty($this->data['cartao']['credito']['endereco']['uf'])) ? (string) $this->data['cartao']['credito']['endereco']['uf'] : null;
         $this->transacao->cartao->credito->endereco->cidade = (!empty($this->data['cartao']['credito']['endereco']['cidade'])) ? (string) $this->data['cartao']['credito']['endereco']['cidade'] : null;
         $this->transacao->cartao->credito->endereco->pais = (!empty($this->data['cartao']['credito']['endereco']['pais'])) ? (string) $this->data['cartao']['credito']['endereco']['pais'] : null;
-
     }
 }

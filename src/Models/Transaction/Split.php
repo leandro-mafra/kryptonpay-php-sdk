@@ -9,11 +9,10 @@ class Split
      */
     public $documento;
 
-     /**
-     * valor
-     *
-     * @var int
-     */
+    /**
+    * valor
+    *
+    * @var int
+    */
     public $valor;
-
 }

@@ -36,7 +36,6 @@ class Api
             return ($this->handleApiReturn(
                 $this->client->request($this->method, $this->settings->url . '/' . $this->prefix, $options)
             ));
-
         } catch (\Exception $e) {
             return $this->handleApiError($e);
         }

@@ -60,5 +60,4 @@ class Transacao extends DefaultModel
         $this->boleto = new Boleto();
         $this->cartao = new Cartao();
     }
-
 }

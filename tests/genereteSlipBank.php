@@ -5,14 +5,13 @@ use KryptonPay\Config\settings;
 use KryptonPay\KryptonPay;
 
 try {
-
     $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2F0ZXdheS1hcGktbG9jYWwvbG9naW4iLCJpYXQiOjE1NzkyODkyNjIsIm5iZiI6MTU3OTI4OTI2MiwianRpIjoiQkNMeUJIV2syamx6SmIwdyIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImxjbCI6InB0LWJyIiwidGtuIjpmYWxzZSwiZGF0ZXRpbWUiOiIyMDIwLTAxLTE3VDE5OjI3OjQyKzAwMDAifQ.XxuGyVZ9iMOq6cwaVuTh-4lTvBr1Xw7nsotV9v7eeSM';
     $environment = 'H';
     $settings = new Settings($token, $environment);
 
-    if($environment == 'H'){
-        ini_set("display_errors",1);
-        ini_set("display_startup_erros",1);
+    if ($environment == 'H') {
+        ini_set("display_errors", 1);
+        ini_set("display_startup_erros", 1);
         error_reporting(E_ALL);
     }
 
@@ -81,5 +80,5 @@ try {
     $recompense = $transactions->genereteSlipBank($dataSlipBank);
     dd($recompense);
 } catch (\Exception $e) {
-    echo ($e->getMessage());
+    echo($e->getMessage());
 }

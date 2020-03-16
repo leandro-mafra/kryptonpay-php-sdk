@@ -2,7 +2,6 @@
 
 use KryptonPay\Models\DefaultModel;
 
-
 class Debito extends DefaultModel
 {
     /**
@@ -11,6 +10,4 @@ class Debito extends DefaultModel
      * @var string App\Models\Transaction\Credito
      */
     public $credito;
-
-
 }

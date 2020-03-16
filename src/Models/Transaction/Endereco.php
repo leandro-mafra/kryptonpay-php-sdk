@@ -9,14 +9,14 @@ class Endereco extends DefaultModel
      */
     public $logradouro;
 
-     /**
-     * @var int numero
-     */
+    /**
+    * @var int numero
+    */
     public $numero;
 
-     /**
-     * @var string bairro
-     */
+    /**
+    * @var string bairro
+    */
     public $bairro;
 
     /**
@@ -24,14 +24,14 @@ class Endereco extends DefaultModel
      */
     public $cep;
 
-        /**
+    /**
      * @var string complemento
      */
     public $complemento;
 
-     /**
-     * @var string estado
-     */
+    /**
+    * @var string estado
+    */
     public $uf;
 
     /**
