@@ -41,10 +41,8 @@ class Transaction
         $this->transacao->pagador->celular = (!empty($this->data['pagador']['celular'])) ? (string) Util::removerMaskTel($this->data['pagador']['celular']) : null;
         if (!empty($this->data['pagador']['tipo']) && $this->data['pagador']['tipo'] == self::PAYER_TYPE_CPF) {
             $this->transacao->pagador->cpf = (!empty($this->data['pagador']['cpf'])) ? Util::removerMaskCpfCnpj($this->data['pagador']['cpf']) : null;
-            $this->transacao->pagador->cnpj = (!empty($this->data['pagador']['cnpj'])) ? Util::removerMaskCpfCnpj($this->data['pagador']['cnpj']) : null;
         } else {
-            $this->transacao->pagador->cpf = null;
-            $this->transacao->pagador->cnpj = null;
+            $this->transacao->pagador->cnpj = (!empty($this->data['pagador']['cnpj'])) ? Util::removerMaskCpfCnpj($this->data['pagador']['cnpj']) : null;
         }
     }
 
