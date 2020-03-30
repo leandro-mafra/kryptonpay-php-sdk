@@ -51,7 +51,7 @@ class Transaction
         $this->transacao->pagador->endereco->logradouro = (!empty($this->data['pagador']['endereco']['logradouro'])) ? (string) $this->data['pagador']['endereco']['logradouro'] : null;
         $this->transacao->pagador->endereco->numero = (!empty($this->data['pagador']['endereco']['numero'])) ? (string) $this->data['pagador']['endereco']['numero'] : null;
         $this->transacao->pagador->endereco->bairro = (!empty($this->data['pagador']['endereco']['bairro'])) ? (string) $this->data['pagador']['endereco']['bairro'] : null;
-        $this->transacao->pagador->endereco->cep = (!empty($this->data['pagador']['endereco']['cep'])) ? (int) Util::removerMaskCep($this->data['pagador']['endereco']['cep']) : null;
+        $this->transacao->pagador->endereco->cep = (!empty($this->data['pagador']['endereco']['cep'])) ? (string) Util::removerMaskCep($this->data['pagador']['endereco']['cep']) : null;
         $this->transacao->pagador->endereco->complemento = (!empty($this->data['pagador']['endereco']['complemento'])) ? (string) $this->data['pagador']['endereco']['complemento'] : null;
         $this->transacao->pagador->endereco->cidade = (!empty($this->data['pagador']['endereco']['cidade'])) ? (string) $this->data['pagador']['endereco']['cidade'] : null;
         $this->transacao->pagador->endereco->uf = (!empty($this->data['pagador']['endereco']['uf'])) ? (string) $this->data['pagador']['endereco']['uf'] : null;
