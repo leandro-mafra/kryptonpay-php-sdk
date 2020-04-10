@@ -4,18 +4,17 @@ namespace KryptonPay\Api;
 
 class Transaction extends DefaultModel
 {
-
-
     private $paymentType;
     private $isQuickSale;
-    private $application= null;
+    private $application = null;
     private $reference;
     private $paymentTypes = [];
     private $payer;
     private $itens = [];
     private $creditCard;
     private $slip;
-    private $split;
+    private $split = [];
+    private $address;
 
     public function setPaymentType(int $paymentType)
     {
@@ -47,7 +46,7 @@ class Transaction extends DefaultModel
         $this->payer = $payer;
     }
 
-    public function setItem(Item $item)
+    public function addItem(Item $item)
     {
         $this->itens[] = $item;
     }
@@ -62,14 +61,15 @@ class Transaction extends DefaultModel
         $this->slip = $slip;
     }
 
-    public function setSplit(Split $split)
+    public function addSplit(Split $split)
     {
         $this->split[] = $split;
     }
 
-
-
-
+    public function setAddress(Split $address)
+    {
+        $this->address = $address;
+    }
 
     public function getPaymentType()
     {
@@ -119,5 +119,10 @@ class Transaction extends DefaultModel
     public function getSplit()
     {
         return $this->split;
+    }
+
+    public function getAddress()
+    {
+        return $this->address;
     }
 }

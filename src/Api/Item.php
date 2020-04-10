@@ -33,21 +33,21 @@ class Item extends DefaultModel
 
     public function getCode()
     {
-        $this->code;
+        return $this->code;
     }
 
     public function getDescription()
     {
-        $this->description;
+        return $this->description;
     }
 
     public function getUnitPrice()
     {
-        $this->unitPrice;
+        return $this->unitPrice;
     }
 
     public function getQuantity()
     {
-        $this->quantity;
+        return $this->quantity;
     }
 }

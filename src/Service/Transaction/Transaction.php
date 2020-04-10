@@ -30,17 +30,17 @@ class Transaction
 
     protected function setModelPayer()
     {
-        $this->transacao->pagador->tipo = $this->apiContext->getTransaction()->getType();
-        $this->transacao->pagador->nome = $this->apiContext->getTransaction()->getName();
-        $this->transacao->pagador->email = $this->apiContext->getTransaction()->getEmail();
-        $this->transacao->pagador->celular = $this->apiContext->getTransaction()->getAddress();
+        $this->transacao->pagador->tipo = $this->apiContext->getTransaction()->getPayer()->getType();
+        $this->transacao->pagador->nome = $this->apiContext->getTransaction()->getPayer()->getName();
+        $this->transacao->pagador->email = $this->apiContext->getTransaction()->getPayer()->getEmail();
+        $this->transacao->pagador->celular = $this->apiContext->getTransaction()->getPayer()->getAddress();
 
-        if ($this->apiContext->getTransaction()->getType() == ApiContext::PERSON_NATURAL) {
-            $this->transacao->pagador->cpf = $this->apiContext->getTransaction()->getIdentity();
-            $this->transacao->pagador->dataNascimento = $this->apiContext->getTransaction()->getBirthDate();
+        if ($this->apiContext->getTransaction()->getPayer()->getType() == ApiContext::PERSON_NATURAL) {
+            $this->transacao->pagador->cpf = $this->apiContext->getTransaction()->getPayer()->getIdentity();
+            $this->transacao->pagador->dataNascimento = $this->apiContext->getTransaction()->getPayer()->getBirthDate();
         } else {
-            $this->transacao->pagador->cnpj = $this->apiContext->getTransaction()->getIdentity();
-            $this->transacao->pagador->nomeFantasia = $this->apiContext->getTransaction()->getFantasyName();
+            $this->transacao->pagador->cnpj = $this->apiContext->getTransaction()->getPayer()->getIdentity();
+            $this->transacao->pagador->nomeFantasia = $this->apiContext->getTransaction()->getPayer()->getFantasyName();
         }
     }
 
@@ -72,6 +72,10 @@ class Transaction
 
     protected function setModelSplit()
     {
+        if (empty($this->apiContext->getTransaction()->getSplit())) {
+            unset($this->transacao->split);
+        }
+
         foreach ($this->apiContext->getTransaction()->getSplit() as $key => $split) {
             $this->transacao->split[$key]['documento'] = $split->getDocument();
             if ($split->getValue()) {

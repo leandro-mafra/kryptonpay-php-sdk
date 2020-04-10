@@ -79,57 +79,57 @@ class CreditCard extends DefaultModel
 
     public function getValue()
     {
-        $this->value;
+        return $this->value;
     }
 
     public function getNumberInstallments()
     {
-        $this->numberInstallments;
+        return $this->numberInstallments;
     }
 
     public function getExpirationDate()
     {
-        $this->expirationDate;
+        return $this->expirationDate;
     }
 
     public function getSaleDescription()
     {
-        $this->saleDescription;
+        return $this->saleDescription;
     }
 
     public function getCardNumber()
     {
-        $this->cardNumber;
+        return $this->cardNumber;
     }
 
     public function getFirstName()
     {
-        $this->firstName;
+        return $this->firstName;
     }
 
     public function getLastName()
     {
-        $this->lastName;
+        return $this->lastName;
     }
 
     public function getCardholder()
     {
-        $this->cardholder;
+        return $this->cardholder;
     }
 
     public function getSecurityCode()
     {
-        $this->securityCode;
+        return $this->securityCode;
     }
 
     public function getMonthExpiration()
     {
-        $this->monthExpiration;
+        return $this->monthExpiration;
     }
 
     public function getYearExpiration()
     {
-        $this->yearExpiration;
+        return $this->yearExpiration;
     }
 
     public function getAddress()

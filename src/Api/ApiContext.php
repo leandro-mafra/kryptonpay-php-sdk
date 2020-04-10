@@ -11,7 +11,7 @@ class ApiContext extends DefaultModel
     public const PERSON_LEGAL = 2;
 
     private $token;
-    private $isSandBox;
+    private $isSandBox = false;
     private $transaction;
 
     public function __construct()
@@ -35,16 +35,16 @@ class ApiContext extends DefaultModel
 
     public function getApiToken()
     {
-        $this->token;
+        return $this->token;
     }
 
     public function getIsSandbox()
     {
-        $this->isSandBox;
+        return $this->isSandBox;
     }
 
     public function getTransaction()
     {
-        $this->transaction;
+        return $this->transaction;
     }
 }
