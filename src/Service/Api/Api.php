@@ -1,6 +1,9 @@
-<?php namespace KryptonPay\Service\Api;
+<?php
+
+namespace KryptonPay\Service\Api;
 
 use GuzzleHttp\Client;
+use KryptonPay\Api\ApiContext;
 use KryptonPay\Models\Api\Response;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -9,49 +12,41 @@ use Tightenco\Collect\Support\Collection;
 class Api
 {
     private $method;
-    private $prefix;
+    private $endPoint;
     private $client;
-    private $settings;
+    private $apiContext;
     private $response;
+    private $url = 'api.kryptonpay.com.br/';
 
-    public function __construct(object $settings, string $method, string $prefix)
+    public function __construct(ApiContext $apiContext, string $method, string $endPoint)
     {
+        if ($this->apiContext->getIsSandbox()) {
+            $this->url = 'homologacao.kryptonpay.com.br/';
+        }
+
         $this->method = $method;
-        $this->prefix = $prefix;
-        $this->settings = $settings;
-        $this->response = new Response;
+        $this->endPoint = $endPoint;
+        $this->apiContext = $apiContext;
+        $this->response = new Response();
     }
 
-    public function send(object $data = null): object
+    public function call(object $data = null): object
     {
         try {
             $this->client = new Client();
-            $options['headers']['Authorization'] = sprintf('%s %s', 'Bearer', trim($this->settings->token));
+            $options['headers']['Authorization'] = sprintf('%s %s', 'Bearer', trim($this->apiContext->getApiToken()));
             $options['json'] = null;
 
-            if (!is_null($data)) {
+            if ($data) {
                 $options['json'] = $this->normalize($data);
             }
 
-            return ($this->handleApiReturn(
-                $this->client->request($this->method, $this->settings->url . '/' . $this->prefix, $options)
-            ));
+            return $this->handleApiReturn(
+                $this->client->request($this->method, $this->url . '/' . $this->endPoint, $options)
+            );
         } catch (\Exception $e) {
             return $this->handleApiError($e);
         }
-    }
-
-    private function normalize(object $data): array
-    {
-        $serializer = new Serializer([new ObjectNormalizer()]);
-        $data = self::arrayRemoveNull($serializer->normalize($data));
-
-        foreach ($data as $key => $d) {
-            if (empty($d)) {
-                unset($data[$key]);
-            };
-        }
-        return $data;
     }
 
     public static function arrayRemoveNull($item)
@@ -70,6 +65,20 @@ class Api
                 : [$key => self::arrayRemoveNull($item)];
             })
             ->toArray();
+    }
+
+    private function normalize(object $data): array
+    {
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $data = self::arrayRemoveNull($serializer->normalize($data));
+
+        foreach ($data as $key => $d) {
+            if (empty($d)) {
+                unset($data[$key]);
+            }
+        }
+
+        return $data;
     }
 
     private function handleApiReturn($response): object
