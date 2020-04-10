@@ -1,40 +1,40 @@
-<?php namespace KryptonPay\Service\Transaction\Module;
+<?php
 
-use Carbon\Carbon;
-use KryptonPay\Helpers\Util;
-use KryptonPay\Models\Transaction\Boleto;
+namespace KryptonPay\Service\Transaction\Module;
+
+use KryptonPay\Api\ApiContext;
 use KryptonPay\Service\Transaction\Transaction;
 
 class SlipBank extends Transaction
 {
-    public function __construct(array $data)
+    private $slipBank;
+
+    public function __construct(ApiContext $apiContext)
     {
-        parent::__construct($data);
-        $this->setModelPaymentOptions();
+        parent::__construct($apiContext);
+        $this->slipBank = $apiContext->getTransaction()->getSlip();
     }
 
-    public function getData()
+    public function getDataTranform()
     {
-        return $this->transacao;
-    }
+        $this->transacao->boleto->valor = $this->slipBank->getValue();
+        $this->transacao->boleto->valorDesconto = $this->slipBank->getDiscountValue();
+        $this->transacao->boleto->dataVencimento = $this->slipBank->getDueDate();
+        $this->transacao->boleto->porcentagemMulta = $this->slipBank->getPenaltyRate();
+        $this->transacao->boleto->dataMulta = $this->slipBank->getPenaltyDate();
+        $this->transacao->boleto->dataDesconto = $this->slipBank->getDiscountLimitDate();
+        $this->transacao->boleto->porcentagemJuros = $this->slipBank->getInterestRate();
+        $this->transacao->boleto->instrucoes = $this->slipBank->getInstruction();
 
-    private function setModelPaymentOptions(): void
-    {
-        $this->transacao->boleto->valor = (!empty($this->data['boleto']['valor'])) ? (int) Util::numberFormat($this->data['boleto']['valor']) : null;
-        $this->transacao->boleto->valorDesconto = (!empty($this->data['boleto']['valorDesconto'])) ? (int) Util::numberFormat($this->data['boleto']['valorDesconto']) : null;
-        $this->transacao->boleto->dataVencimento = (!empty($this->data['boleto']['dataVencimento'])) ? (string) Carbon::createFromFormat('d/m/Y', $this->data['boleto']['dataVencimento'])->format('Y-m-d') : null;
-        $this->transacao->boleto->pagamentoParcial = (!empty($this->data['boleto']['pagamentoParcial'])) ? (bool) $this->data['boleto']['pagamentoParcial'] : null;
-        $this->transacao->boleto->cancelarAposVencimento = (!empty($this->data['boleto']['cancelarAposVencimento'])) ? (bool) $this->data['boleto']['cancelarAposVencimento'] : null;
-        $this->transacao->boleto->porcentagemMulta = (!empty($this->data['boleto']['porcentagemMulta'])) ? (float) $this->data['boleto']['porcentagemMulta'] : null;
-        $this->transacao->boleto->dataMulta = (!empty($this->data['boleto']['dataMulta'])) ? (string) Carbon::createFromFormat('d/m/Y', $this->data['boleto']['dataVencimento'])->format('Y-m-d') : null;
-        $this->transacao->boleto->dataDesconto = (!empty($this->data['boleto']['dataDesconto'])) ? (string) Carbon::createFromFormat('d/m/Y', $this->data['boleto']['dataDesconto'])->format('Y-m-d') : null;
-        $this->transacao->boleto->porcentagemJuros = (!empty($this->data['boleto']['porcentagemJuros'])) ? (float) $this->data['boleto']['porcentagemJuros'] : null;
-        $this->transacao->boleto->instrucoes = (!empty($this->data['boleto']['instrucoes'])) ? (string) $this->data['boleto']['instrucoes'] : null;
-
-        if (!empty($this->data['boleto']['observacoes']) && is_array($this->data['boleto']['observacoes'])) {
-            foreach ($this->data['boleto']['observacoes'] as $key => $comment) {
-                $this->transacao->boleto->observacoes[$key] = (!empty($comment)) ? (string) $comment : null;
+        if (!empty($this->slipBank->getObservation())) {
+            foreach ($this->slipBank->getObservation() as $key => $observation) {
+                $this->transacao->boleto->observacoes[$key] = (!empty($observation)) ? (string) $observation : null;
             }
         }
+
+        unset($this->transacao->cartao->debito);
+        unset($this->transacao->cartao->credito);
+
+        return $this->transacao;
     }
 }
