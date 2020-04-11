@@ -5,8 +5,8 @@ namespace KryptonPay\Api;
 class Slip extends DefaultModel
 {
     private $value;
-    private $discountValue;
-    private $discountLimitDate;
+    private $discountValue = null;
+    private $discountLimitDate = null;
     private $observations = [];
     private $instruction;
     private $penaltyRate;
