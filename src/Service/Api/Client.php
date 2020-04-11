@@ -17,7 +17,7 @@ class Client
     private $client;
     private $apiContext;
     private $response;
-    private $url = 'api.kryptonpay.com.br/';
+    private $url = 'https://api.kryptonpay.com.br/';
 
     public function __construct(ApiContext $apiContext, string $method, string $endPoint)
     {
@@ -44,7 +44,7 @@ class Client
             }
 
             return $this->handleApiReturn(
-                $this->client->request($this->method, $this->url . '/' . $this->endPoint, $options)
+                $this->client->request($this->method, $this->url . $this->endPoint, $options)
             );
         } catch (\Exception $e) {
             return $this->handleApiError($e);
