@@ -32,9 +32,6 @@ class SlipBank extends Transaction
             }
         }
 
-        unset($this->transacao->cartao->debito);
-        unset($this->transacao->cartao->credito);
-
         return $this->transacao;
     }
 }
