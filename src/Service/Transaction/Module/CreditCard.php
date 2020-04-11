@@ -38,9 +38,6 @@ class CreditCard extends Transaction
         $this->transacao->cartao->credito->endereco->cidade = $this->creditCardAddress->getCityName();
         $this->transacao->cartao->credito->endereco->pais = $this->creditCardAddress->getCountryName();
 
-        unset($this->transacao->cartao->debito);
-        unset($this->transacao->boleto);
-
         return $this->transacao;
     }
 }

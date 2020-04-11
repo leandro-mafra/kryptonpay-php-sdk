@@ -72,10 +72,6 @@ class Transaction
 
     protected function setModelSplit()
     {
-        if (empty($this->apiContext->getTransaction()->getSplit())) {
-            unset($this->transacao->split);
-        }
-
         foreach ($this->apiContext->getTransaction()->getSplit() as $key => $split) {
             $this->transacao->split[$key]['documento'] = $split->getDocument();
             if ($split->getValue()) {
