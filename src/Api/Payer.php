@@ -23,9 +23,9 @@ class Payer extends DefaultModel
         $this->name = $name;
     }
 
-    public function setPhone(string $name)
+    public function setPhone(string $phone)
     {
-        $this->name = $name;
+        $this->phone = $phone;
     }
 
     public function setFantasyName(string $fantasyName)
