@@ -9,9 +9,9 @@ class Slip extends DefaultModel
     private $discountLimitDate = null;
     private $observations = [];
     private $instruction;
-    private $penaltyRate;
-    private $penaltyDate;
-    private $interestRate;
+    private $penaltyRate = null;
+    private $penaltyDate = null;
+    private $interestRate = null;
     private $dueDate;
 
     public function setValue(float $value)
@@ -44,7 +44,7 @@ class Slip extends DefaultModel
         $this->penaltyRate = $penaltyRate;
     }
 
-    public function setPenaltyDate(float $penaltyDate)
+    public function setPenaltyDate(string $penaltyDate)
     {
         $this->penaltyDate = $penaltyDate;
     }
