@@ -1,43 +1,46 @@
 <?php namespace KryptonPay\Service\Transaction\Module;
 
-use Carbon\Carbon;
-use KryptonPay\Helpers\Util;
+use KryptonPay\Api\ApiContext;
 use KryptonPay\Service\Transaction\Transaction;
 
 class CreditCard extends Transaction
 {
-    public function __construct(array $data)
+    private $creditCard;
+    private $creditCardAddress;
+
+    public function __construct(ApiContext $apiContext)
     {
-        parent::__construct($data);
-        $this->setModelPaymentOptions();
+        parent::__construct($apiContext);
+        $this->creditCard = $apiContext->getTransaction()->getCreditCard();
+        $this->creditCardAddress = $apiContext->getTransaction()->getCreditCard()->getAddress();
     }
 
-    public function getData()
+    public function getDataTranform()
     {
+        $this->transacao->cartao->credito->valor = $this->creditCard->getValue();
+        $this->transacao->cartao->credito->numeroParcelas = $this->creditCard->getNumberInstallments();
+        $this->transacao->cartao->credito->dataVencimento = $this->creditCard->getExpirationDate();
+        $this->transacao->cartao->credito->descricao = $this->creditCard->getSaleDescription();
+        $this->transacao->cartao->credito->numeroCartao = $this->creditCard->getCardNumber();
+        $this->transacao->cartao->credito->primeiroNome = $this->creditCard->getFirstName();
+        $this->transacao->cartao->credito->ultimoNome = $this->creditCard->getLastName();
+        $this->transacao->cartao->credito->nomeTitular = $this->creditCard->getCardholder();
+        $this->transacao->cartao->credito->codigoSeguranca = $this->creditCard->getSecurityCode();
+        $this->transacao->cartao->credito->mesExpiracao = $this->creditCard->getMonthExpiration();
+        $this->transacao->cartao->credito->anoExpiracao = $this->creditCard->getYearExpiration();
+
+        $this->transacao->cartao->credito->endereco->logradouro = $this->creditCardAddress->getStreet();
+        $this->transacao->cartao->credito->endereco->numero = $this->creditCardAddress->getNumber();
+        $this->transacao->cartao->credito->endereco->bairro = $this->creditCardAddress->getDistrict();
+        $this->transacao->cartao->credito->endereco->cep = $this->creditCardAddress->getZipCode();
+        $this->transacao->cartao->credito->endereco->complemento = $this->creditCardAddress->getComplement();
+        $this->transacao->cartao->credito->endereco->uf = $this->creditCardAddress->getStateInitials();
+        $this->transacao->cartao->credito->endereco->cidade = $this->creditCardAddress->getCityName();
+        $this->transacao->cartao->credito->endereco->pais = $this->creditCardAddress->getCountryName();
+
+        unset($this->transacao->cartao->debito);
+        unset($this->transacao->boleto);
+
         return $this->transacao;
-    }
-
-    private function setModelPaymentOptions(): void
-    {
-        $this->transacao->cartao->credito->valor = (!empty($this->data['cartao']['credito']['valor'])) ? (float) Util::numberFormat($this->data['cartao']['credito']['valor']) : null;
-        $this->transacao->cartao->credito->numeroParcelas = (!empty($this->data['cartao']['credito']['numeroParcelas'])) ? (int) Util::numberFormat($this->data['cartao']['credito']['numeroParcelas']) : null;
-        $this->transacao->cartao->credito->dataVencimento = (!empty($this->data['cartao']['credito']['dataVencimento'])) ? (string) Carbon::createFromFormat('d/m/Y', $this->data['cartao']['credito']['dataVencimento'])->format('Y-m-d') : null;
-        $this->transacao->cartao->credito->descricao = (!empty($this->data['cartao']['credito']['descricao'])) ? (string) $this->data['cartao']['credito']['descricao'] : null;
-        $this->transacao->cartao->credito->numeroCartao = (!empty($this->data['cartao']['credito']['numeroCartao'])) ? (string) $this->data['cartao']['credito']['numeroCartao'] : null;
-        $this->transacao->cartao->credito->primeiroNome = (!empty($this->data['cartao']['credito']['primeiroNome'])) ? (string) $this->data['cartao']['credito']['primeiroNome'] : null;
-        $this->transacao->cartao->credito->ultimoNome = (!empty($this->data['cartao']['credito']['ultimoNome'])) ? (string) $this->data['cartao']['credito']['ultimoNome'] : null;
-        $this->transacao->cartao->credito->nomeTitular = (!empty($this->data['cartao']['credito']['nomeTitular'])) ? (string) $this->data['cartao']['credito']['nomeTitular'] : null;
-        $this->transacao->cartao->credito->codigoSeguranca = (!empty($this->data['cartao']['credito']['codigoSeguranca'])) ? (int) $this->data['cartao']['credito']['codigoSeguranca'] : null;
-        $this->transacao->cartao->credito->mesExpiracao = (!empty($this->data['cartao']['credito']['mesExpiracao'])) ? (string) $this->data['cartao']['credito']['mesExpiracao'] : null;
-        $this->transacao->cartao->credito->anoExpiracao = (!empty($this->data['cartao']['credito']['anoExpiracao'])) ? (string) $this->data['cartao']['credito']['anoExpiracao'] : null;
-        //endereco
-        $this->transacao->cartao->credito->endereco->logradouro = (!empty($this->data['cartao']['credito']['endereco']['logradouro'])) ? (string) $this->data['cartao']['credito']['endereco']['logradouro'] : null;
-        $this->transacao->cartao->credito->endereco->numero = (!empty($this->data['cartao']['credito']['endereco']['numero'])) ? (string) $this->data['cartao']['credito']['endereco']['numero'] : null;
-        $this->transacao->cartao->credito->endereco->bairro = (!empty($this->data['cartao']['credito']['endereco']['bairro'])) ? (string) $this->data['cartao']['credito']['endereco']['bairro'] : null;
-        $this->transacao->cartao->credito->endereco->cep = (!empty($this->data['cartao']['credito']['endereco']['cep'])) ? (string) Util::removerMaskCep($this->data['cartao']['credito']['endereco']['cep']) : null;
-        $this->transacao->cartao->credito->endereco->complemento = (!empty($this->data['cartao']['credito']['endereco']['complemento'])) ? (string) $this->data['cartao']['credito']['endereco']['complemento'] : null;
-        $this->transacao->cartao->credito->endereco->uf = (!empty($this->data['cartao']['credito']['endereco']['uf'])) ? (string) $this->data['cartao']['credito']['endereco']['uf'] : null;
-        $this->transacao->cartao->credito->endereco->cidade = (!empty($this->data['cartao']['credito']['endereco']['cidade'])) ? (string) $this->data['cartao']['credito']['endereco']['cidade'] : null;
-        $this->transacao->cartao->credito->endereco->pais = (!empty($this->data['cartao']['credito']['endereco']['pais'])) ? (string) $this->data['cartao']['credito']['endereco']['pais'] : null;
     }
 }

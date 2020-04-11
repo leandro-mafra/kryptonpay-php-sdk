@@ -1,11 +1,8 @@
-<?php namespace KryptonPay\Models\Transaction;
+<?php
+
+namespace KryptonPay\Models\Transaction;
 
 use KryptonPay\Models\DefaultModel;
-use KryptonPay\Models\Transaction\Itens;
-use KryptonPay\Models\Transaction\Pagador;
-use KryptonPay\Models\Transaction\Split;
-use KryptonPay\Models\Transaction\Boleto;
-use KryptonPay\Models\Transaction\Cartao;
 
 class Transacao extends DefaultModel
 {
@@ -55,7 +52,7 @@ class Transacao extends DefaultModel
     public function __construct()
     {
         $this->pagador = new Pagador();
-        $this->itens = new Itens();
+        $this->itens = [];
         $this->split = new Split();
         $this->boleto = new Boleto();
         $this->cartao = new Cartao();

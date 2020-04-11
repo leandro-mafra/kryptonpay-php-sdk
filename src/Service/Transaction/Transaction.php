@@ -1,83 +1,87 @@
-<?php namespace KryptonPay\Service\Transaction;
+<?php
 
-use Carbon\Carbon;
-use KryptonPay\Helpers\Util;
-use KryptonPay\Models\Transaction\Transacao;
+namespace KryptonPay\Service\Transaction;
+
+use KryptonPay\Api\ApiContext;
 use KryptonPay\Models\Transaction\Itens;
+use KryptonPay\Models\Transaction\Transacao;
 
 class Transaction
 {
     protected $transaction;
-    protected $data;
 
-    const SLIPBANK = 1;
-    const CARD = 2;
-    const PAYER_TYPE_CPF = 1;
-    const PAYER_TYPE_CNPJ = 2;
-
-    public function __construct(array $data)
+    public function __construct(ApiContext $apiContext)
     {
-        $this->data = $data;
+        $this->apiContext = $apiContext;
         $this->transacao = new Transacao();
         $this->setModels();
     }
 
-    protected function setModels(): void
+    protected function setModels()
     {
-        $this->transacao->tipoPagamento = (!empty($this->data['tipoPagamento'])) ? (int) $this->data['tipoPagamento'] : null;
-        $this->transacao->referencia = (!empty($this->data['referencia'])) ? (string) $this->data['referencia'] : null;
+        $this->transacao->tipoPagamento = $this->apiContext->getTransaction()->getPaymentType();
+        $this->transacao->referencia = $this->apiContext->getTransaction()->getReference();
+
         $this->setModelPayer();
         $this->setModelAddress();
         $this->setModelItens();
         $this->setModelSplit();
     }
 
-    protected function setModelPayer(): void
+    protected function setModelPayer()
     {
-        $this->transacao->pagador->tipo = (!empty($this->data['pagador']['tipo'])) ? (int) $this->data['pagador']['tipo'] : null;
-        $this->transacao->pagador->nome = (!empty($this->data['pagador']['nome'])) ? (string) $this->data['pagador']['nome'] : null;
-        $this->transacao->pagador->dataNascimento = (!empty($this->data['pagador']['dataNascimento'])) ? (string) Carbon::createFromFormat('d/m/Y', $this->data['pagador']['dataNascimento'])->format('Y-m-d') : null;
-        $this->transacao->pagador->email = (!empty($this->data['pagador']['email'])) ? (string) $this->data['pagador']['email'] : null;
-        $this->transacao->pagador->celular = (!empty($this->data['pagador']['celular'])) ? (string) Util::removerMaskTel($this->data['pagador']['celular']) : null;
-        if (!empty($this->data['pagador']['tipo']) && $this->data['pagador']['tipo'] == self::PAYER_TYPE_CPF) {
-            $this->transacao->pagador->cpf = (!empty($this->data['pagador']['cpf'])) ? Util::removerMaskCpfCnpj($this->data['pagador']['cpf']) : null;
+        $this->transacao->pagador->tipo = $this->apiContext->getTransaction()->getPayer()->getType();
+        $this->transacao->pagador->nome = $this->apiContext->getTransaction()->getPayer()->getName();
+        $this->transacao->pagador->email = $this->apiContext->getTransaction()->getPayer()->getEmail();
+        $this->transacao->pagador->celular = $this->apiContext->getTransaction()->getPayer()->getAddress();
+
+        if ($this->apiContext->getTransaction()->getPayer()->getType() == ApiContext::PERSON_NATURAL) {
+            $this->transacao->pagador->cpf = $this->apiContext->getTransaction()->getPayer()->getIdentity();
+            $this->transacao->pagador->dataNascimento = $this->apiContext->getTransaction()->getPayer()->getBirthDate();
         } else {
-            $this->transacao->pagador->cnpj = (!empty($this->data['pagador']['cnpj'])) ? Util::removerMaskCpfCnpj($this->data['pagador']['cnpj']) : null;
+            $this->transacao->pagador->cnpj = $this->apiContext->getTransaction()->getPayer()->getIdentity();
+            $this->transacao->pagador->nomeFantasia = $this->apiContext->getTransaction()->getPayer()->getFantasyName();
         }
     }
 
-    protected function setModelAddress(): void
+    protected function setModelAddress()
     {
-        $this->transacao->pagador->endereco->logradouro = (!empty($this->data['pagador']['endereco']['logradouro'])) ? (string) $this->data['pagador']['endereco']['logradouro'] : null;
-        $this->transacao->pagador->endereco->numero = (!empty($this->data['pagador']['endereco']['numero'])) ? (string) $this->data['pagador']['endereco']['numero'] : null;
-        $this->transacao->pagador->endereco->bairro = (!empty($this->data['pagador']['endereco']['bairro'])) ? (string) $this->data['pagador']['endereco']['bairro'] : null;
-        $this->transacao->pagador->endereco->cep = (!empty($this->data['pagador']['endereco']['cep'])) ? (string) Util::removerMaskCep($this->data['pagador']['endereco']['cep']) : null;
-        $this->transacao->pagador->endereco->complemento = (!empty($this->data['pagador']['endereco']['complemento'])) ? (string) $this->data['pagador']['endereco']['complemento'] : null;
-        $this->transacao->pagador->endereco->cidade = (!empty($this->data['pagador']['endereco']['cidade'])) ? (string) $this->data['pagador']['endereco']['cidade'] : null;
-        $this->transacao->pagador->endereco->uf = (!empty($this->data['pagador']['endereco']['uf'])) ? (string) $this->data['pagador']['endereco']['uf'] : null;
-        $this->transacao->pagador->endereco->pais = (!empty($this->data['pagador']['endereco']['pais'])) ? (string) $this->data['pagador']['endereco']['pais'] : null;
+        $address = $this->apiContext->getTransaction()->getPayer()->getAddress();
+
+        $this->transacao->pagador->endereco->logradouro = $address->getStreet();
+        $this->transacao->pagador->endereco->numero = $address->getNumber();
+        $this->transacao->pagador->endereco->bairro = $address->getDistrict();
+        $this->transacao->pagador->endereco->cep = $address->getZipCode();
+        $this->transacao->pagador->endereco->complemento = $address->getComplement();
+        $this->transacao->pagador->endereco->cidade = $address->getStateInitials();
+        $this->transacao->pagador->endereco->uf = $address->getCityName();
+        $this->transacao->pagador->endereco->pais = $address->getCountryName();
     }
 
-    protected function setModelItens(): void
+    protected function setModelItens()
     {
-        if (isset($this->data['itens']) && is_array($this->data['itens'])) {
-            foreach ($this->data['itens'] as $key => $item) {
-                $mdlItem[$key] = new Itens();
-                $mdlItem[$key]->codigo = (!empty($item['codigo'])) ? (string) $item['codigo'] : null;
-                $mdlItem[$key]->descricao = (!empty($item['descricao'])) ? (string) $item['descricao'] : null;
-                $mdlItem[$key]->valorUnitario = (!empty($item['valorUnitario'])) ? (int) Util::numberFormat($item['valorUnitario']) : null;
-                $mdlItem[$key]->quantidade = (!empty($item['quantidade'])) ? (int) $item['quantidade'] : null;
-            }
-            $this->transacao->itens = $mdlItem;
+        foreach ($this->apiContext->getTransaction()->getItem() as $item) {
+            $mdlItem = new Itens();
+            $mdlItem->codigo = $item->getCode();
+            $mdlItem->descricao = $item->getDescription();
+            $mdlItem->valorUnitario = $item->getUnitPrice();
+            $mdlItem->quantidade = $item->getQuantity();
+            $this->transacao->itens[] = $mdlItem;
         }
     }
 
-    protected function setModelSplit(): void
+    protected function setModelSplit()
     {
-        if (isset($this->data['split']) && is_array($this->data['split'])) {
-            foreach ($this->data['split'] as $key => $split) {
-                $this->transacao->split[$key]['documento'] = (!empty($split['documento'])) ? (string) Util::removerMaskCpfCnpj($split['documento']) : null;
-                $this->transacao->split[$key]['valor'] = (!empty($split['valor'])) ? (int) Util::numberFormat($split['valor']) : null;
+        if (empty($this->apiContext->getTransaction()->getSplit())) {
+            unset($this->transacao->split);
+        }
+
+        foreach ($this->apiContext->getTransaction()->getSplit() as $key => $split) {
+            $this->transacao->split[$key]['documento'] = $split->getDocument();
+            if ($split->getValue()) {
+                $this->transacao->split[$key]['valor'] = $split->getValue();
+            } else {
+                $this->transacao->split[$key]['taxa'] = $split->getTax();
             }
         }
     }
