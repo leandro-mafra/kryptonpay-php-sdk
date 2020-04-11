@@ -6,6 +6,7 @@ class Payer extends DefaultModel
 {
     private $type;
     private $name;
+    private $phone;
     private $fantasyName;
     private $identity;
     private $birthDate;
@@ -18,6 +19,11 @@ class Payer extends DefaultModel
     }
 
     public function setName(string $name)
+    {
+        $this->name = $name;
+    }
+
+    public function setPhone(string $name)
     {
         $this->name = $name;
     }
@@ -47,11 +53,6 @@ class Payer extends DefaultModel
         $this->address = $address;
     }
 
-
-
-
-
-
     public function getType()
     {
         return $this->type;
@@ -60,6 +61,11 @@ class Payer extends DefaultModel
     public function getName()
     {
         return $this->name;
+    }
+
+    public function getPhone()
+    {
+        return $this->phone;
     }
 
     public function getFantasyName()
