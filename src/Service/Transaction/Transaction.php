@@ -33,7 +33,7 @@ class Transaction
         $this->transacao->pagador->tipo = $this->apiContext->getTransaction()->getPayer()->getType();
         $this->transacao->pagador->nome = $this->apiContext->getTransaction()->getPayer()->getName();
         $this->transacao->pagador->email = $this->apiContext->getTransaction()->getPayer()->getEmail();
-        $this->transacao->pagador->celular = $this->apiContext->getTransaction()->getPayer()->getAddress();
+        $this->transacao->pagador->celular = $this->apiContext->getTransaction()->getPayer()->getPhone();
 
         if ($this->apiContext->getTransaction()->getPayer()->getType() == ApiContext::PERSON_NATURAL) {
             $this->transacao->pagador->cpf = $this->apiContext->getTransaction()->getPayer()->getIdentity();
