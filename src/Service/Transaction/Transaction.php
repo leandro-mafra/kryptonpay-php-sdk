@@ -33,7 +33,7 @@ class Transaction
         $this->transacao->pagador->tipo = $this->apiContext->getTransaction()->getPayer()->getType();
         $this->transacao->pagador->nome = $this->apiContext->getTransaction()->getPayer()->getName();
         $this->transacao->pagador->email = $this->apiContext->getTransaction()->getPayer()->getEmail();
-        $this->transacao->pagador->celular = $this->apiContext->getTransaction()->getPayer()->getPhone();
+        $this->transacao->pagador->telefone = $this->apiContext->getTransaction()->getPayer()->getPhone();
 
         if ($this->apiContext->getTransaction()->getPayer()->getType() == ApiContext::PERSON_NATURAL) {
             $this->transacao->pagador->cpf = $this->apiContext->getTransaction()->getPayer()->getIdentity();
@@ -53,8 +53,8 @@ class Transaction
         $this->transacao->pagador->endereco->bairro = $address->getDistrict();
         $this->transacao->pagador->endereco->cep = $address->getZipCode();
         $this->transacao->pagador->endereco->complemento = $address->getComplement();
-        $this->transacao->pagador->endereco->cidade = $address->getStateInitials();
-        $this->transacao->pagador->endereco->uf = $address->getCityName();
+        $this->transacao->pagador->endereco->cidade = $address->getCityName();
+        $this->transacao->pagador->endereco->uf = $address->getStateInitials();
         $this->transacao->pagador->endereco->pais = $address->getCountryName();
     }
 
