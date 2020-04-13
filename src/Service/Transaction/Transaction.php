@@ -21,6 +21,7 @@ class Transaction
     {
         $this->transacao->tipoPagamento = $this->apiContext->getTransaction()->getPaymentType();
         $this->transacao->referencia = $this->apiContext->getTransaction()->getReference();
+        $this->transacao->tabelaReferencia = $this->apiContext->getTransaction()->getReferenceTable();
 
         $this->setModelPayer();
         $this->setModelAddress();
