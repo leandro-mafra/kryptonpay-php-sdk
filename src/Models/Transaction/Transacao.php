@@ -58,7 +58,7 @@ class Transacao extends DefaultModel
     {
         $this->pagador = new Pagador();
         $this->itens = [];
-        $this->split = new Split();
+        $this->split = [];
         $this->boleto = new Boleto();
         $this->cartao = new Cartao();
     }
