@@ -17,6 +17,11 @@ class Transacao extends DefaultModel
     public $referencia;
 
     /**
+     *@var string tabela de referencia
+     */
+    public $tabelaReferencia;
+
+    /**
      * pagador.
      *
      * @var string App\Models\Transaction\pagador

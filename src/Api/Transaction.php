@@ -8,6 +8,7 @@ class Transaction extends DefaultModel
     private $isQuickSale;
     private $application = null;
     private $reference;
+    private $referenceTable = null;
     private $paymentTypes = [];
     private $payer;
     private $itens = [];
@@ -34,6 +35,11 @@ class Transaction extends DefaultModel
     public function setReference(string $reference)
     {
         $this->reference = $reference;
+    }
+
+    public function setReferenceTable(string $referenceTable)
+    {
+        $this->referenceTable = $referenceTable;
     }
 
     public function setPaymentTypes(array $paymentTypes = [])
@@ -89,6 +95,11 @@ class Transaction extends DefaultModel
     public function getReference()
     {
         return $this->reference;
+    }
+
+    public function getReferenceTable()
+    {
+        return $this->referenceTable;
     }
 
     public function getPaymentTypes()
