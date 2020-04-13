@@ -73,13 +73,16 @@ class Transaction
 
     protected function setModelSplit()
     {
-        foreach ($this->apiContext->getTransaction()->getSplit() as $key => $split) {
-            $this->transacao->split[$key]['documento'] = $split->getDocument();
+        foreach ($this->apiContext->getTransaction()->getSplit() as $split) {
+            $data = [];
+            $data['documento'] = $split->getDocument();
             if ($split->getValue()) {
-                $this->transacao->split[$key]['valor'] = $split->getValue();
+                $data['valor'] = $split->getValue();
             } else {
-                $this->transacao->split[$key]['taxa'] = $split->getTax();
+                $data['taxa'] = $split->getTax();
             }
+
+            $this->transacao->split[] = $data;
         }
     }
 }
