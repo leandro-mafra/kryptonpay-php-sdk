@@ -57,7 +57,7 @@ class CreditCard extends DefaultModel
         $this->cardholder = $cardholder;
     }
 
-    public function setSecurityCode(int $securityCode)
+    public function setSecurityCode(string $securityCode)
     {
         $this->securityCode = $securityCode;
     }
