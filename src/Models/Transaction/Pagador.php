@@ -11,6 +11,11 @@ class Pagador extends DefaultModel
     public $nome;
 
     /**
+     *@var int pagador nome fantasia
+     */
+    public $nomeFantasia;
+
+    /**
      * @var string pagador email
      */
     public $email;
