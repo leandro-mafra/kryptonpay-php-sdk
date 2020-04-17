@@ -17,6 +17,11 @@ class Transacao extends DefaultModel
     public $referencia;
 
     /**
+     *@var int aplicacao
+     */
+    public $aplicacao;
+
+    /**
      *@var string tabela de referencia
      */
     public $tabelaReferencia;
