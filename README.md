@@ -1,10 +1,22 @@
 
 # Krypton Pay PHP SDK
 
-![KryptonPay](https://kryptonpay.com.br/assets/img/site/logo-color.png)
-<img src="https://kryptonpay.com.br/assets/img/site/slip.png" alt="KryptonPay Developers" width="100"/>
+<p align="center">
+    <img src="https://kryptonpay.com.br/assets/img/site/slip.png" alt="KryptonPay Developers" width="150"/>
+    </p>
+    <p align="center">
+    <img src="https://kryptonpay.com.br/assets/img/site/logo-color.png" alt="KryptonPay"/>
+</p>
 
-Bem vindo ao repositório Krypton Pay PHP SDK. Este repositório fornece exemplos para integração junto a Krypton Pay API REST.
+<p align="center">
+    <a href="https://packagist.org/packages/kryptonpay/kryptonpay-php-sdk"><img src="https://poser.pugx.org/kryptonpay/kryptonpay-php-sdk/d/total.svg" alt="Total Downloads"></a>
+    <a href="https://packagist.org/packages/kryptonpay/kryptonpay-php-sdk"><img src="https://poser.pugx.org/kryptonpay/kryptonpay-php-sdk/v/stable.svg" alt="Latest Stable Version"></a>
+    <a href="https://packagist.org/packages/kryptonpay/kryptonpay-php-sdk"><img src="https://poser.pugx.org/kryptonpay/kryptonpay-php-sdk/license.svg" alt="License"></a><br>
+</p>
+
+## Sobre
+
+Bem vindo ao repositório Krypton Pay PHP SDK. Este repositório foi criado com o intuito de facilitar a intregração com a Krypton Pay API REST utilizando a linguagem PHP com sintáxe facil e elegante. Apresentamos exemplos em nossa wiki para diversas soluções.
 
 ## Documentação do SDK
 
