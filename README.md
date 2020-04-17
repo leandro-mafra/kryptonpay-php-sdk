@@ -20,8 +20,8 @@ Bem vindo ao repositório Krypton Pay PHP SDK. Este repositório foi criado com 
 
 ## Documentação do SDK
 
-* [Instalação]()
-* [Wiki]()
+* [Instalação](https://github.com/KryptonPay/kryptonpay-php-sdk/wiki/Instala%C3%A7%C3%A3o)
+* [Wiki](https://github.com/KryptonPay/kryptonpay-php-sdk/wiki)
 * [Exemplos]()
 
 ## Contribuintes
