@@ -97,6 +97,13 @@ class Client
     private function handleApiError(Exception $e): object
     {
         switch ($e->getCode()) {
+            case 400:
+                $return = json_decode($e->getResponse()->getBody());
+                $this->response->code = (int) $e->getCode();
+                $this->response->errorCode = (int) $return->errors->errorCode;
+                $this->response->messages = [$return->errors->error->message];
+                return $this->response;
+                break;
             case 401:
                 $return = json_decode($e->getResponse()->getBody());
                 $this->response->code = (int) $e->getCode();
