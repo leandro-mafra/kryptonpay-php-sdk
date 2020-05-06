@@ -102,6 +102,7 @@ class Client
                 $this->response->code = (int) $e->getCode();
                 $this->response->errorCode = (int) $return->errors->errorCode;
                 $this->response->messages = [$return->errors->error->message];
+
                 return $this->response;
                 break;
             case 401:
