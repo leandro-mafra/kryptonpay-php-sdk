@@ -20,13 +20,6 @@ class Credito extends DefaultModel
     public $numeroParcelas;
 
     /**
-     * data de vencimento
-     *
-     * @var date
-     */
-    public $dataVencimento;
-
-    /**
      * descrição da transação
      *
      * @var string
@@ -39,20 +32,6 @@ class Credito extends DefaultModel
      * @var string
      */
     public $numeroCartao;
-
-    /**
-     * primeiro nome do titular
-     *
-     * @var string
-     */
-    public $primeiroNome;
-
-    /**
-     * ultimo nome do titular
-     *
-     * @var string
-     */
-    public $ultimoNome;
 
     /**
      * nome completo do titular do cartão

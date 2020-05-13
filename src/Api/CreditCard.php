@@ -27,11 +27,6 @@ class CreditCard extends DefaultModel
         $this->numberInstallments = $numberInstallments;
     }
 
-    public function setExpirationDate(string $expirationDate)
-    {
-        $this->expirationDate = $expirationDate;
-    }
-
     public function setSaleDescription(string $saleDescription)
     {
         $this->saleDescription = $saleDescription;
@@ -40,16 +35,6 @@ class CreditCard extends DefaultModel
     public function setCardNumber(int $cardNumber)
     {
         $this->cardNumber = $cardNumber;
-    }
-
-    public function setFirstName(string $firstName)
-    {
-        $this->firstName = $firstName;
-    }
-
-    public function setLastName(string $lastName)
-    {
-        $this->lastName = $lastName;
     }
 
     public function setCardholder(string $cardholder)
@@ -87,11 +72,6 @@ class CreditCard extends DefaultModel
         return $this->numberInstallments;
     }
 
-    public function getExpirationDate()
-    {
-        return $this->expirationDate;
-    }
-
     public function getSaleDescription()
     {
         return $this->saleDescription;
@@ -100,16 +80,6 @@ class CreditCard extends DefaultModel
     public function getCardNumber()
     {
         return $this->cardNumber;
-    }
-
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    public function getLastName()
-    {
-        return $this->lastName;
     }
 
     public function getCardholder()

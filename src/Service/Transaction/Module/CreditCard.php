@@ -19,11 +19,8 @@ class CreditCard extends Transaction
     {
         $this->transacao->cartao->credito->valor = $this->creditCard->getValue();
         $this->transacao->cartao->credito->numeroParcelas = $this->creditCard->getNumberInstallments();
-        $this->transacao->cartao->credito->dataVencimento = $this->creditCard->getExpirationDate();
         $this->transacao->cartao->credito->descricao = $this->creditCard->getSaleDescription();
         $this->transacao->cartao->credito->numeroCartao = $this->creditCard->getCardNumber();
-        $this->transacao->cartao->credito->primeiroNome = $this->creditCard->getFirstName();
-        $this->transacao->cartao->credito->ultimoNome = $this->creditCard->getLastName();
         $this->transacao->cartao->credito->nomeTitular = $this->creditCard->getCardholder();
         $this->transacao->cartao->credito->codigoSeguranca = $this->creditCard->getSecurityCode();
         $this->transacao->cartao->credito->mesExpiracao = $this->creditCard->getMonthExpiration();
