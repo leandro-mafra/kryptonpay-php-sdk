@@ -7,6 +7,7 @@ class Transaction extends DefaultModel
     private $paymentType;
     private $isQuickSale;
     private $application = null;
+    private $assumeTax = null;
     private $reference;
     private $referenceTable = null;
     private $paymentTypes = [];
@@ -30,6 +31,11 @@ class Transaction extends DefaultModel
     public function setApplication(int $application = null)
     {
         $this->application = $application;
+    }
+
+    public function setAssumeTax(bool $assumeTax)
+    {
+        $this->assumeTax = $assumeTax;
     }
 
     public function setReference(string $reference)
@@ -90,6 +96,11 @@ class Transaction extends DefaultModel
     public function getApplication()
     {
         return $this->application;
+    }
+
+    public function getAssumeTax()
+    {
+        return $this->assumeTax;
     }
 
     public function getReference()

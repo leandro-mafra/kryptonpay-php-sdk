@@ -22,6 +22,11 @@ class Transacao extends DefaultModel
     public $aplicacao;
 
     /**
+     *@var boolean contrato mae assume taxa
+     */
+    public $assumeTaxa;
+
+    /**
      *@var string tabela de referencia
      */
     public $tabelaReferencia;
