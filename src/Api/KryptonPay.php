@@ -32,4 +32,5 @@ class KryptonPay
 
         return $api->call();
     }
+
 }
