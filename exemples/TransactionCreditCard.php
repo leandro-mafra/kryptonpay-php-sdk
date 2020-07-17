@@ -25,10 +25,10 @@ $transaction->setReference('00001');
 $transaction->setPaymentType(ApiContext::CREDIT_CARD);
 
 $payerAddress = new Address();
-$payerAddress->setStreet('Rua Dona Ana Vieira');
+$payerAddress->setStreet('Rua Teste');
 $payerAddress->setNumber('34');
-$payerAddress->setDistrict('Saudade');
-$payerAddress->setZipCode('30285420');
+$payerAddress->setDistrict('Novo Horizonte');
+$payerAddress->setZipCode('30273129');
 $payerAddress->setComplement('CS');
 $payerAddress->setStateInitials('MG');
 $payerAddress->setCityName('Belo Horizonte');
@@ -36,10 +36,10 @@ $payerAddress->setCountryName('Brasi');
 
 $payer = new Payer();
 $payer->setType(ApiContext::PERSON_NATURAL);
-$payer->setName('Jose Francisco');
+$payer->setName('John Doe');
 $payer->setIdentity('63728975044');
-$payer->setBirthDate('1995-08-06');
-$payer->setEmail('jose.fcts@gmail.com');
+$payer->setBirthDate('1994-23-06');
+$payer->setEmail('john.doe@email.com');
 $payer->setAddress($payerAddress);
 $transaction->setPayer($payer);
 
@@ -51,10 +51,10 @@ $item->setQuantity('1');
 $transaction->addItem($item);
 
 $cardholderAddress = new Address();
-$cardholderAddress->setStreet('Rua Dona Ana Vieira');
+$cardholderAddress->setStreet('Rua Teste');
 $cardholderAddress->setNumber('34');
-$cardholderAddress->setDistrict('Saudade');
-$cardholderAddress->setZipCode('30285420');
+$cardholderAddress->setDistrict('Novo Horizonte');
+$cardholderAddress->setZipCode('30273129');
 $cardholderAddress->setComplement('CS');
 $cardholderAddress->setStateInitials('MG');
 $cardholderAddress->setCityName('Belo Horizonte');
@@ -75,5 +75,3 @@ $transaction->setCreditCard($creditCard);
 $apiContext->setTransaction($transaction);
 
 $transaction = KryptonPay::createPayment($apiContext);
-
-dd($transaction);

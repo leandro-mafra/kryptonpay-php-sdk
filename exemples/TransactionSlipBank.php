@@ -26,10 +26,10 @@ $transaction->setApplication(null);
 $transaction->setReference('00001');
 
 $payerAddress = new Address();
-$payerAddress->setStreet('Rua Dona Ana Vieira');
+$payerAddress->setStreet('Rua Teste');
 $payerAddress->setNumber('34');
-$payerAddress->setDistrict('Saudade');
-$payerAddress->setZipCode('30285420');
+$payerAddress->setDistrict('Novo Horizonte');
+$payerAddress->setZipCode('30273129');
 $payerAddress->setComplement('CS');
 $payerAddress->setStateInitials('MG');
 $payerAddress->setCityName('Belo Horizonte');
@@ -37,17 +37,17 @@ $payerAddress->setCountryName('Brasi');
 
 $payer = new Payer();
 $payer->setType(ApiContext::PERSON_NATURAL);
-$payer->setName('Jose Francisco');
-$payer->setIdentity('12540548636');
-$payer->setBirthDate('1995-08-06');
-$payer->setEmail('jose.fcts@gmail.com');
+$payer->setName('John Doe');
+$payer->setIdentity('63728975044');
+$payer->setBirthDate('1994-23-06');
+$payer->setEmail('john.doe@email.com');
 $payer->setAddress($payerAddress);
 $transaction->setPayer($payer);
 
 $item = new Item();
 $item->setCode('1234');
-$item->setDescription('Jose Francisco');
-$item->setUnitPrice('12540548636');
+$item->setDescription('Item');
+$item->setUnitPrice(13.83);
 $item->setQuantity('1');
 $transaction->addItem($item);
 
@@ -60,4 +60,4 @@ $transaction->setSlip($slipBank);
 
 $apiContext->setTransaction($transaction);
 
-dd(KryptonPay::createPayment($apiContext));
+KryptonPay::createPayment($apiContext);

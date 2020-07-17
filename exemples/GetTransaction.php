@@ -16,5 +16,3 @@ $apiContext->setApiToken('eyJ0eXAiOiJKV1QiLCJhbGasdciOiJIUzI1NiJ9.eyJpc3MiOiJodH
 $getTransaction = new GetTransaction($apiContext);
 $getTransaction->setReference(1);
 $transaction = $getTransaction->execute();
-
-dd($transaction);
