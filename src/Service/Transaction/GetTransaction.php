@@ -15,12 +15,34 @@ class GetTransaction extends Transaction
     {
         $this->apiContext = $apiContext;
         $this->kryptonPay = new KryptonPay();
-    }
+    }    
 
-    public function execute()
+    public function executeByReference($PDF)
     {
         $transaction = $this->kryptonPay->getTransaction($this->apiContext, $this->getReference());
         unset($transaction->meta);
-        return $transaction;
+
+        $retornoArray = $this->retornoHmtlPdf($transaction, $PDF);
+        return $retornoArray;        
+    }
+
+    public function executeById($PDF)
+    {
+        $transaction = $this->kryptonPay->getId($this->apiContext, $this->getId());
+        unset($transaction->meta);
+
+        $retornoArray = $this->retornoHmtlPdf($transaction, $PDF);
+        return $retornoArray;
+    }   
+
+    public function retornoHmtlPdf($transaction, $pdf)
+    {
+        $transactionArray = (array) $transaction;
+        $transactionArray = end($transactionArray);
+        $linkParametro = ($pdf) ? "?pdf=true" : "";
+        return [
+            'url'     => $transactionArray->opcaoPagamento->url . $linkParametro,
+            'retorno' => file_get_contents($transactionArray->opcaoPagamento->url . $linkParametro)
+        ];          
     }
 }

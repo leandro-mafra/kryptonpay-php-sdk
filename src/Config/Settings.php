@@ -10,6 +10,6 @@ class Settings
     {
         $this->token = $token;
         $this->environment = $environment;
-        $this->url = ($this->environment == 'P') ? 'https://api.kryptonpay.com.br' : 'http://gateway-api-local';
+        $this->url = ($this->environment == 'P') ? 'https://api.kryptonpay.com.br' : 'http://gateway-local-api';
     }
 }

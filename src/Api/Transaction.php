@@ -9,6 +9,7 @@ class Transaction extends DefaultModel
     private $application = null;
     private $assumeTax = null;
     private $reference;
+    private $id;
     private $referenceTable = null;
     private $paymentTypes = [];
     private $payer;
@@ -17,6 +18,11 @@ class Transaction extends DefaultModel
     private $slip;
     private $split = [];
     private $address;
+
+    public function setId(int $id)
+    {
+        $this->id = $id;
+    }
 
     public function setPaymentType(int $paymentType)
     {
@@ -58,6 +64,11 @@ class Transaction extends DefaultModel
         $this->payer = $payer;
     }
 
+    public function addId(Item $id)
+    {
+        $this->id[] = $id;
+    }
+
     public function addItem(Item $item)
     {
         $this->itens[] = $item;
@@ -81,6 +92,11 @@ class Transaction extends DefaultModel
     public function setAddress(Split $address)
     {
         $this->address = $address;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getPaymentType()

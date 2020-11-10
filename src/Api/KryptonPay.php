@@ -26,9 +26,16 @@ class KryptonPay
         return $api->call($transaction);
     }
 
-    public static function getTransaction(ApiContext $apiContext, int $idTransaction)
+    public static function getTransaction(ApiContext $apiContext, int $Transaction)
     {
-        $api = new Client($apiContext, 'GET', sprintf('transactions?referencia=%s', $idTransaction));
+        $api = new Client($apiContext, 'GET', sprintf('transactions?referencia=%s', $Transaction));
+
+        return $api->call();
+    }
+
+    public static function getId(ApiContext $apiContext, int $id)
+    {
+        $api = new Client($apiContext, 'GET', sprintf('transactions?id=%s', $id));
 
         return $api->call();
     }
