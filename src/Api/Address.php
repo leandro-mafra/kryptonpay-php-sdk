@@ -2,6 +2,8 @@
 
 namespace KryptonPay\Api;
 
+use stdClass;
+
 class Address extends DefaultModel
 {
     private $street;
@@ -12,6 +14,9 @@ class Address extends DefaultModel
     private $stateInitials;
     private $cityName;
     private $countryName;
+    private $idNation;
+    private $outsideAddress;
+
 
     public function setStreet($street)
     {
@@ -53,6 +58,16 @@ class Address extends DefaultModel
         $this->countryName = $countryName;
     }
 
+    public function setIdNation($idNation)
+    {
+        $this->idNation = $idNation;
+    }
+
+    public function setOutsideAddress($outsideAddress = false)
+    {
+        $this->outsideAddress = $outsideAddress;
+    }
+
     public function getStreet()
     {
         return $this->street;
@@ -92,4 +107,28 @@ class Address extends DefaultModel
     {
         return $this->countryName;
     }
+
+    public function getIdNation()
+    {
+        return $this->idNation;
+    }
+
+    public function getOutsideAddress()
+    {
+        return $this->outsideAddress;
+    }
+
+    public function translateFieldsAddress($data)
+    {
+        $newFildsAddress = new stdClass();
+        $newFildsAddress->logradouro       = $data->street;
+        $newFildsAddress->numero           = $data->number;
+        $newFildsAddress->bairro           = $data->district;
+        $newFildsAddress->complemento      = $data->complement;
+        $newFildsAddress->enderecoExterior = $data->outsideAddress;   
+        $newFildsAddress->cep              = $data->zipCode;   
+        $newFildsAddress->idPais           = $data->idNation;   
+
+        return $newFildsAddress;
+    }    
 }

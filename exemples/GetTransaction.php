@@ -19,20 +19,20 @@ $getTransaction = new GetTransaction($apiContext);
 // - 0 ID
 // - 1 Referencia
 
-// Se PDF true  = xml False 
-// Se PDF false = xml true
+// Se $pdf true  = xml False 
+// Se $pdf false = xml true
 
 $idReference = 1;
-$PDF         = true;
+$pdf         = true;
 
 switch ($idReference) {
     case 0:
         $getTransaction->setId(1);
-        dd($transaction = $getTransaction->executeById($PDF));        
+        dd($transaction = $getTransaction->executeById($pdf));        
         break;
 
     case 1:
         $getTransaction->setReference(1);
-        dd($transaction = $getTransaction->executeByReference($PDF));
+        dd($transaction = $getTransaction->executeByReference($pdf));
         break;
 }

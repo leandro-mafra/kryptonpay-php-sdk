@@ -38,6 +38,12 @@ class KryptonPay
         $api = new Client($apiContext, 'GET', sprintf('transactions?id=%s', $id));
 
         return $api->call();
-    }
+    }   
 
+    public static function createAccount(ApiContext $apiContext, $data)
+    {     
+        $api    = new Client($apiContext, 'POST', 'users/openAccount');       
+
+        return $api->call($data);
+    }
 }

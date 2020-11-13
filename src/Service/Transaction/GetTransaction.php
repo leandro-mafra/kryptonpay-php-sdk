@@ -17,21 +17,21 @@ class GetTransaction extends Transaction
         $this->kryptonPay = new KryptonPay();
     }    
 
-    public function executeByReference($PDF)
+    public function executeByReference($pdf)
     {
         $transaction = $this->kryptonPay->getTransaction($this->apiContext, $this->getReference());
         unset($transaction->meta);
 
-        $retornoArray = $this->retornoHmtlPdf($transaction, $PDF);
+        $retornoArray = $this->retornoHmtlPdf($transaction, $pdf);
         return $retornoArray;        
     }
 
-    public function executeById($PDF)
+    public function executeById($pdf)
     {
         $transaction = $this->kryptonPay->getId($this->apiContext, $this->getId());
         unset($transaction->meta);
 
-        $retornoArray = $this->retornoHmtlPdf($transaction, $PDF);
+        $retornoArray = $this->retornoHmtlPdf($transaction, $pdf);
         return $retornoArray;
     }   
 

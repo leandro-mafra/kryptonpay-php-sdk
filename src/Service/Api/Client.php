@@ -36,8 +36,8 @@ class Client
     {
         try {
             $this->client = new GuzzleClient();
-            $options['headers']['Authorization'] = sprintf('%s %s', 'Bearer', trim($this->apiContext->getApiToken()));
-            $options['json'] = null;
+            $options['headers']['Authorization'] = sprintf('%s %s', 'Bearer', trim($this->apiContext->getApiToken()));            
+            $options['json'] = null;            
 
             if ($data) {
                 $options['json'] = $this->normalize($data);
@@ -85,12 +85,14 @@ class Client
 
     private function handleApiReturn($response): object
     {
-        $return = null;
-        $successCode = [200, 201, 204];
-        if (\in_array($response->getStatusCode(), $successCode)) {
-            $return = json_decode($response->getBody());
-        }
+        $return = 0;
+        $successCode = [200, 201, 204];        
+        $return1 = json_decode($response->getBody(), true);
 
+        if (\in_array($response->getStatusCode(), $successCode)) {
+            $return = (is_object(json_decode($response->getBody()))) ? json_decode($response->getBody()) : (object) json_decode($response->getBody());
+        }
+        
         return $return;
     }
 
@@ -138,7 +140,7 @@ class Client
                 $return = json_decode($e->getResponse()->getBody());
 
                 $this->response->code = (int) $e->getCode();
-                $this->response->messages = get_object_vars($return->errors);
+                $this->response->messages = get_object_vars(isset($return->errors) ? $return->errors : $return);
                 unset($this->response->errorCode);
 
                 return $this->response;
