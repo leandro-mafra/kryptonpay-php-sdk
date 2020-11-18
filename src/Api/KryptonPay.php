@@ -46,4 +46,32 @@ class KryptonPay
 
         return $api->call($data);
     }
+
+    public static function listContracts(ApiContext $apiContext)
+    {
+        $api = new Client($apiContext, 'GET', 'contracts');
+
+        return $api->call();
+    }
+
+    public static function postRegisterApplication(ApiContext $apiContext, $idContract, $data)
+    {     
+        $api = new Client($apiContext, 'POST', sprintf('contracts/%s/applications', $idContract));
+
+        return $api->call($data);
+    } 
+    
+    public static function listApplication(ApiContext $apiContext, $idContract, $idApplication)
+    {
+        $api = new Client($apiContext, 'GET', sprintf('contracts/%s/applications/%s', $idContract, $idApplication));
+
+        return $api->call();
+    }  
+
+    public static function putRegisterApplication(ApiContext $apiContext, $idContract, $data)
+    {
+        $api = new Client($apiContext, 'PUT', sprintf('contracts/%s/applications/%s', $idContract, $data->id));
+
+        return $api->call($data);
+    } 
 }

@@ -4,7 +4,6 @@ namespace KryptonPay\Service\Register;
 
 use KryptonPay\Api\ApiContext;
 use KryptonPay\Api\KryptonPay;
-use KryptonPay\Service\Api\Client;
 use KryptonPay\Api\Account;
 use KryptonPay\Api\Address;
 use KryptonPay\Api\BankAccount;

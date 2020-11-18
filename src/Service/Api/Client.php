@@ -9,6 +9,7 @@ use KryptonPay\Models\Api\Response;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Tightenco\Collect\Support\Collection;
+use stdClass;
 
 class Client
 {
@@ -86,13 +87,17 @@ class Client
     private function handleApiReturn($response): object
     {
         $return = 0;
-        $successCode = [200, 201, 204];        
-        $return1 = json_decode($response->getBody(), true);
-
-        if (\in_array($response->getStatusCode(), $successCode)) {
-            $return = (is_object(json_decode($response->getBody()))) ? json_decode($response->getBody()) : (object) json_decode($response->getBody());
+        $successCode = [200, 201, 204];
+//
+        if (\in_array($response->getStatusCode(), $successCode)) {//
+            $return = (is_object(json_decode($response->getBody()))) ? json_decode($response->getBody()) : (object)json_decode($response->getBody());
         }
-        
+
+//        $return = (is_object(json_decode($response->getBody()))) ? json_decode($response->getBody()) : (object)json_decode($response->getBody());
+//        $this->response->code = $response->getStatusCode();
+//        $this->response->messages = (array) $return;
+//        return $this->response;
+//
         return $return;
     }
 
@@ -116,15 +121,17 @@ class Client
                 return $this->response;
                 break;
             case 403:
+                $return = json_decode($e->getResponse()->getBody());
                 $this->response->code = (int) $e->getCode();
-                $this->response->messages = ['Erro: 403'];
+                $this->response->messages = ['Erro: 403',$return->message];
                 unset($this->response->errorCode);
 
                 return $this->response;
                 break;
             case 404:
+                $return = json_decode($e->getResponse()->getBody());
                 $this->response->code = (int) $e->getCode();
-                $this->response->messages = ['Erro: 404'];
+                $this->response->messages = ['Erro: 404','ID inválido'];
                 unset($this->response->errorCode);
 
                 return $this->response;
