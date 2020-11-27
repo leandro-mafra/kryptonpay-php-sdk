@@ -73,5 +73,47 @@ class KryptonPay
         $api = new Client($apiContext, 'PUT', sprintf('contracts/%s/applications/%s', $idContract, $data->id));
 
         return $api->call($data);
-    } 
+    }
+
+    public static function postRegisterTable(ApiContext $apiContext, $data)
+    {
+        $api = new Client($apiContext, 'POST', 'tables');
+
+        return $api->call($data);
+    }
+
+    public static function postRegisterTableServices(ApiContext $apiContext, $data)
+    {
+        $api = new Client($apiContext, 'POST', sprintf('tables/%s/services', $data->idTabela));
+
+        return $api->call($data);
+    }
+
+    public static function postRegisterServicesTableInstallment(ApiContext $apiContext, $data)
+    {
+        $api = new Client($apiContext, 'POST', sprintf('tables/%s/services-installment', $data->idTabela));
+
+        return $api->call($data);
+    }
+
+    public static function putEditTable(ApiContext $apiContext, $data)
+    {
+        $api = new Client($apiContext, 'PUT', sprintf('tables/%s', $data->id));
+
+        return $api->call($data);
+    }
+
+    public static function putEditServiceTable(ApiContext $apiContext, $data)
+    {
+        $api = new Client($apiContext, 'PUT', sprintf('tables/%s/services', $data->idTabela));
+
+        return $api->call($data);
+    }
+
+    public static function putEditServiceTableInstallment(ApiContext $apiContext, $data, $idTable)
+    {
+        $api = new Client($apiContext, 'PUT', sprintf('tables/%s/services-installment/%s', $idTable, $data->id));
+
+        return $api->call($data);
+    }
 }
