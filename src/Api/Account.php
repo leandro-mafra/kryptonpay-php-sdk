@@ -17,7 +17,7 @@ class Account extends DefaultModel
 
     public function setTypePerson(int $typePerson)
     {
-        $this->typePerson = $typePerson;        
+        $this->typePerson = $typePerson;
     }
 
     public function setBirth(string $birth)
@@ -28,8 +28,8 @@ class Account extends DefaultModel
     public function setName(string $name)
     {
         $this->name = $name;
-    }  
-    
+    }
+
     public function setEmail(string $email)
     {
         $this->email = $email;
@@ -38,23 +38,23 @@ class Account extends DefaultModel
     public function setCpf(string $cpf)
     {
         $this->cpf = $cpf;
-    } 
+    }
 
     public function setCnpj(string $cnpj)
     {
         $this->cnpj = $cnpj;
-    } 
+    }
 
     public function setFantasyName(string $fantasyName)
     {
         $this->fantasyName = $fantasyName;
-    }  
+    }
 
     public function setPassword(string $password)
     {
         $this->password = $password;
-    }  
-    
+    }
+
     public function getTypePerson()
     {
         return $this->typePerson;
@@ -68,12 +68,12 @@ class Account extends DefaultModel
     public function getName()
     {
         return $this->name;
-    }   
-    
+    }
+
     public function getEmail()
     {
         return $this->email;
-    } 
+    }
 
     public function getCpf()
     {
@@ -88,12 +88,12 @@ class Account extends DefaultModel
     public function getFantasyName()
     {
         return $this->fantasyName;
-    } 
+    }
 
     public function getPassword()
     {
         return $this->password;
-    } 
+    }
 
     public function translateFieldsAccount($data)
     {
@@ -104,10 +104,10 @@ class Account extends DefaultModel
         $newFildsAccount->email          = $data->email;
         $newFildsAccount->cpf            = ($data->typePerson == 2) ? null               : $data->cpf;
         $newFildsAccount->cnpj           = ($data->typePerson == 2) ? $data->cnpj        : null;
-        $newFildsAccount->nomeFantasia   = ($data->typePerson == 2) ? $data->fantasyName : null;    
+        $newFildsAccount->nomeFantasia   = ($data->typePerson == 2) ? $data->fantasyName : null;
 
-        return $newFildsAccount;       
-    }    
+        return $newFildsAccount;
+    }
 
     public function translateFieldsResponsible($data)
     {
@@ -115,11 +115,11 @@ class Account extends DefaultModel
         $newFildsResponsible->tipo           = is_null($data->typePerson) ? null : 1;
         $newFildsResponsible->nome           = is_null($data->name)       ? null : $data->name;
         $newFildsResponsible->email          = is_null($data->email)      ? null : $data->email;
-        $newFildsResponsible->cpf            = is_null($data->cpf)        ? null : $data->cpf;   
-        $newFildsResponsible->dataNascimento = is_null($data->birth)      ? null : $data->birth;   
+        $newFildsResponsible->cpf            = is_null($data->cpf)        ? null : $data->cpf;
+        $newFildsResponsible->dataNascimento = is_null($data->birth)      ? null : $data->birth;
 
         return $newFildsResponsible;
-    }    
+    }
 
     public function translateFieldsContract()
     {
@@ -141,7 +141,6 @@ class Account extends DefaultModel
         $newFieldsUsuario->idioma   = 'pt-br';
         $newFieldsUsuario->cpfCnpj  = isset($data->cpf) ? $data->cpf : $data->cnpj;
 
-        return $newFieldsUsuario;       
-    }    
+        return $newFieldsUsuario;
+    }
 }
-

@@ -46,7 +46,7 @@ class Pagador extends DefaultModel
     public $tipo;
 
     /**
-     * Person
+     * PersonRegister
      * @var string App\Models\Transaction\Endereco
      */
     public $endereco;

@@ -28,11 +28,11 @@ $pdf         = true;
 switch ($idReference) {
     case 0:
         $getTransaction->setId(1);
-        dd($transaction = $getTransaction->executeById($pdf));        
+        var_dump($transaction = $getTransaction->executeById($pdf));
         break;
 
     case 1:
         $getTransaction->setReference(1);
-        dd($transaction = $getTransaction->executeByReference($pdf));
+        var_dump($transaction = $getTransaction->executeByReference($pdf));
         break;
 }

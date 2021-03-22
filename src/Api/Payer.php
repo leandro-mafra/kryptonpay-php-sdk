@@ -4,23 +4,25 @@ namespace KryptonPay\Api;
 
 class Payer extends DefaultModel
 {
-    private $type;
-    private $name;
+    private $tipo;
+    private $nome;
     private $phone;
-    private $fantasyName;
+    private $nomeFantasia;
     private $identity;
-    private $birthDate;
+    private $dataNascimento;
+    private $cpf;
+    private $cnpj;
     private $email;
     private $address;
 
-    public function setType(int $type)
+    public function setTipo(int $tipo)
     {
-        $this->type = $type;
+        $this->tipo = $tipo;
     }
 
-    public function setName(string $name)
+    public function setNome(string $nome)
     {
-        $this->name = $name;
+        $this->nome = $nome;
     }
 
     public function setPhone(string $phone)
@@ -28,9 +30,9 @@ class Payer extends DefaultModel
         $this->phone = $phone;
     }
 
-    public function setFantasyName(string $fantasyName)
+    public function setNomeFantasia(string $nomeFantasia)
     {
-        $this->fantasyName = $fantasyName;
+        $this->nomeFantasia = $nomeFantasia;
     }
 
     public function setIdentity(string $identity)
@@ -38,9 +40,9 @@ class Payer extends DefaultModel
         $this->identity = $identity;
     }
 
-    public function setBirthDate(string $birthDate)
+    public function setDataNascimento(string $dataNascimento)
     {
-        $this->birthDate = $birthDate;
+        $this->dataNascimento = $dataNascimento;
     }
 
     public function setEmail(string $email)
@@ -53,14 +55,24 @@ class Payer extends DefaultModel
         $this->address = $address;
     }
 
-    public function getType()
+    public function setCpf(string $cpf)
     {
-        return $this->type;
+        $this->cpf = $cpf;
     }
 
-    public function getName()
+    public function setCnpj(string $cnpj)
     {
-        return $this->name;
+        $this->cnpj = $cnpj;
+    }
+
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
+    public function getNome()
+    {
+        return $this->nome;
     }
 
     public function getPhone()
@@ -68,9 +80,9 @@ class Payer extends DefaultModel
         return $this->phone;
     }
 
-    public function getFantasyName()
+    public function getNomeFantasia()
     {
-        return $this->fantasyName;
+        return $this->nomeFantasia;
     }
 
     public function getIdentity()
@@ -78,9 +90,9 @@ class Payer extends DefaultModel
         return $this->identity;
     }
 
-    public function getBirthDate()
+    public function getDataNascimento()
     {
-        return $this->birthDate;
+        return $this->dataNascimento;
     }
 
     public function getEmail()
@@ -91,5 +103,15 @@ class Payer extends DefaultModel
     public function getAddress()
     {
         return $this->address;
+    }
+
+    public function getCpf()
+    {
+        return $this->cpf;
+    }
+
+    public function getCnpj()
+    {
+        return $this->cnpj;
     }
 }

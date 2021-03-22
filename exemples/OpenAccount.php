@@ -2,7 +2,9 @@
 
 use KryptonPay\Api\ApiContext;
 use KryptonPay\Api\Account;
-use KryptonPay\Service\Register\GetAccount;
+use KryptonPay\Api\Address;
+use KryptonPay\Api\BankAccount;
+use KryptonPay\Service\Register\AccountRegister;
 
 ini_set("display_errors", 1);
 ini_set("display_startup_erros", 1);
@@ -14,7 +16,7 @@ $apiContext = new ApiContext();
 $apiContext->setIsSandbox(true);
 $apiContext->setApiToken('eyJ0eXAiOiJKV1QiLCJhbGasdciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5rcnlwdG9ucGF5LmNvbS5ici9asd1c2Vycy8yL3Rva2VuIiwiaWF0IjoxNTc1NDg1NTc0LCJasduYmYiOjE1NzU0ODU1NzQsImp0aSI6InBDeUdZS2ZkajlrOG44eWkiLCJzdWIiOjIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjciLCJsY2wiOiJwdC1iciIsInRrbiI6dHJ1ZSwiZGF0ZXRpbWUiOiIyMDE5LTEyLTA0VDE4OjUyOjU0KzAwMDAifQ.MF_Zeg7whvyk9gxs7oi3Gk9kdefg0WvlSNbSokasdRwCyQ');
 
-$getAccount = new GetAccount($apiContext);
+$getAccount = new AccountRegister($apiContext);
 
 $newAccountPessoa = new Account();
 $newAccountPessoa->setTypePerson(1);
@@ -42,7 +44,7 @@ $newAccountAddress->setDistrict('bairro');
 $newAccountAddress->setZipCode('30123123');
 $newAccountAddress->setComplement('complemento');
 $newAccountAddress->setOutsideAddress(false);
-$newAccountAddress->setIdNation(76); 
+$newAccountAddress->setIdNation(76);
 
 $newAccountBank = new BankAccount();
 $newAccountBank->setAccountType(1212);
@@ -54,5 +56,5 @@ $newAccountBank->setDigitAccount(9);
 // $newAccountBank->setOperation('123');
 
 $responsible = $newAccountPessoa->getTypePerson();
-$checkFields = $getAccount->executeRegisterAccount($newAccountPessoa, $newAccountAddress, $newAccountBank, ($responsible == 1) ? null : $newAccountPessoaResponsible);
-dd($checkFields);
+$checkFields = $getAccount->createAccount($newAccountPessoa, $newAccountAddress, $newAccountBank, ($responsible == 1) ? null : $newAccountPessoaResponsible);
+var_dump($checkFields);

@@ -4,11 +4,11 @@ namespace KryptonPay\Api;
 
 class ApiContext extends DefaultModel
 {
-    public const SLIPBANK = 1;
-    public const CREDIT_CARD = 2;
+    const SLIPBANK = 1;
+    const CREDIT_CARD = 2;
 
-    public const PERSON_NATURAL = 1;
-    public const PERSON_LEGAL = 2;
+    const PERSON_NATURAL = 1;
+    const PERSON_LEGAL = 2;
 
     private $token;
     private $isSandBox = false;
@@ -16,6 +16,7 @@ class ApiContext extends DefaultModel
 
     public function __construct()
     {
+
     }
 
     public function setApiToken(string $token)

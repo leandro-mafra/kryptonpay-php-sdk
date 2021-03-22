@@ -7,22 +7,23 @@ use stdClass;
 class Application extends DefaultModel
 {
     private $id;
-    private $name;
-    private $applicationMain;
+    private $nome;
     private $url;
     private $applicationKey;
+    private $applicationMain;
+    private $contract;
 
-    public function setId( string $id)
+    public function setId( int $id)
     {
         $this->id = $id;
     }
 
-    public function setName( string $name)
+    public function setNome( string $nome)
     {
-        $this->name = $name;
+        $this->nome = $nome;
     }
 
-    public function setApplicationMain( string $applicationMain)
+    public function setApplicationMain( bool $applicationMain)
     {
         $this->applicationMain = $applicationMain;
     }
@@ -35,16 +36,21 @@ class Application extends DefaultModel
     public function setApplicationKey(string $applicationKey)
     {
         $this->applicationKey = $applicationKey;
-    } 
+    }
+
+    public function setContract(int $contract)
+    {
+        $this->contract = $contract;
+    }
 
     public function getId()
     {
         return $this->id;
     }
 
-    public function getName()
+    public function getNome()
     {
-        return $this->name;
+        return $this->nome;
     }
 
     public function getApplicationMain()
@@ -60,17 +66,10 @@ class Application extends DefaultModel
     public function getApplicationKey()
     {
         return $this->applicationKey;
-    }  
+    }
 
-    public function translateFieldsApplication($data)
+    public function getContract()
     {
-        $newFildsApplication = new stdClass();
-        $newFildsApplication->id              = $data->id;
-        $newFildsApplication->nome            = $data->name;
-        $newFildsApplication->applicationMain = $data->applicationMain;
-        $newFildsApplication->url             = $data->url;
-        $newFildsApplication->applicationKey  = $data->applicationKey;
-
-        return $newFildsApplication;
-    }    
+        return $this->contract;
+    }
 }

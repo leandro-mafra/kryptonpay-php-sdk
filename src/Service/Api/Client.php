@@ -25,7 +25,8 @@ class Client
         $this->apiContext = $apiContext;
 
         if ($this->apiContext->getIsSandbox()) {
-            $this->url = 'https://homologacao.api.kryptonpay.com.br/';
+            $this->url = 'http://gateway-local-api/';
+//            $this->url = 'https://homologacao.api.kryptonpay.com.br/';
         }
 
         $this->method = $method;
@@ -38,7 +39,7 @@ class Client
         try {
             $this->client = new GuzzleClient();
             $options['headers']['Authorization'] = sprintf('%s %s', 'Bearer', trim($this->apiContext->getApiToken()));            
-            $options['json'] = null;            
+            $options['json'] = null;
 
             if ($data) {
                 $options['json'] = $this->normalize($data);
@@ -145,16 +146,8 @@ class Client
                 break;
             case 422:
                 $return = json_decode($e->getResponse()->getBody());
-
                 $this->response->code = (int) $e->getCode();
                 $this->response->messages = get_object_vars(isset($return->errors) ? $return->errors : $return);
-                unset($this->response->errorCode);
-
-                return $this->response;
-                break;
-            case 500:
-                $this->response->code = (int) $e->getCode();
-                $this->response->messages = ['Erro: 500'];
                 unset($this->response->errorCode);
 
                 return $this->response;
