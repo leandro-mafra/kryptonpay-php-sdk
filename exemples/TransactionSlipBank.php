@@ -12,7 +12,6 @@ use KryptonPay\Api\Item;
 use KryptonPay\Api\KryptonPay;
 use KryptonPay\Api\Payer;
 use KryptonPay\Api\Slip;
-use KryptonPay\Api\Split;
 use KryptonPay\Api\Transaction;
 
 $apiContext = new ApiContext();
@@ -36,10 +35,10 @@ $payerAddress->setCityName('Belo Horizonte');
 $payerAddress->setCountryName('Brasi');
 
 $payer = new Payer();
-$payer->setType(ApiContext::PERSON_NATURAL);
-$payer->setName('John Doe');
+$payer->setTipo(ApiContext::PERSON_NATURAL);
+$payer->setNome('John Doe');
 $payer->setIdentity('63728975044');
-$payer->setBirthDate('1994-23-06');
+$payer->setDataNascimento('1994-23-06');
 $payer->setEmail('john.doe@email.com');
 $payer->setAddress($payerAddress);
 $transaction->setPayer($payer);

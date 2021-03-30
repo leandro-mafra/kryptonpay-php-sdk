@@ -2,7 +2,7 @@
 
 use KryptonPay\Models\DefaultModel;
 
-class TypeTransaction extends DefaultModel
+class TipoTransacao extends DefaultModel
 {
     /**
      * TransactionType id.
