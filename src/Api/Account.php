@@ -14,6 +14,7 @@ class Account extends DefaultModel
     private $cnpj;
     private $fantasyName;
     private $password;
+    private $hash;
 
     public function setTypePerson(int $typePerson)
     {
@@ -55,6 +56,11 @@ class Account extends DefaultModel
         $this->password = $password;
     }
 
+    public function setHash(string $hash)
+    {
+        $this->password = $hash;
+    }
+
     public function getTypePerson()
     {
         return $this->typePerson;
@@ -93,6 +99,11 @@ class Account extends DefaultModel
     public function getPassword()
     {
         return $this->password;
+    }
+
+    public function getHash()
+    {
+        return $this->hash;
     }
 
     public function translateFieldsAccount($data)
@@ -137,6 +148,7 @@ class Account extends DefaultModel
         $newFieldsUsuario = new stdClass();
         $newFieldsUsuario->email    = $data->email;
         $newFieldsUsuario->password = hash('sha512', $data->password);
+        $newFieldsUsuario->hash     = $newFieldsUsuario->password;
         $newFieldsUsuario->nome     = $data->name;
         $newFieldsUsuario->idioma   = 'pt-br';
         $newFieldsUsuario->cpfCnpj  = isset($data->cpf) ? $data->cpf : $data->cnpj;
