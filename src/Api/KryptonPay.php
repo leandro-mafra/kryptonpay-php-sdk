@@ -70,6 +70,12 @@ class KryptonPay
         return $api->call($data);
     }
 
+    public static function getContractByCpfCnpj(ApiContext $apiContext, $data)
+    {
+        $api = new Client($apiContext, 'GET', 'contracts?cpfCnpj=' . $data->getCpfCnpj());
+        return $api->call($data);
+    }
+
     public static function allContracts(ApiContext $apiContext)
     {
         $api = new Client($apiContext, 'GET', 'contracts');

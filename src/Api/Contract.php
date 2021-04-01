@@ -2,6 +2,8 @@
 
 namespace KryptonPay\Api;
 
+use phpDocumentor\Reflection\Types\Integer;
+
 class Contract extends DefaultModel
 {
     private $id;
@@ -12,6 +14,7 @@ class Contract extends DefaultModel
     private $idResponsavel;
     private $observacao;
     private $status;
+    private $cpfCnpj;
 
     public function setId(int $id)
     {
@@ -51,6 +54,16 @@ class Contract extends DefaultModel
     public function setStatus(Bool $status)
     {
         $this->status = $status;
+    }
+
+    public function setCpfCnpj(string $cpfCnpj)
+    {
+        $this->cpfCnpj = $cpfCnpj;
+    }
+
+    public function getCpfCnpj()
+    {
+        return $this->cpfCnpj;
     }
 
     public function getStatus()

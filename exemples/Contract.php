@@ -50,8 +50,14 @@ $contract = new ContractRegister($apiContext);
 //$returnGetContract = $contract->getContract($getContract);
 //var_dump($returnGetContract);
 
-// Buscar Contratos
+// Buscar contrato por cpfCnpj
+$getContract = new Contract();
+$getContract->setCpfCnpj('11508222000136');
 
+$returnGetContract = $contract->getContractByCnpfCnpj($getContract);
+var_dump($returnGetContract);
+
+// Buscar Contratos
 $returnAllContracts = $contract->allContracts();
 var_dump($returnAllContracts);
 
