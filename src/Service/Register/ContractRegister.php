@@ -32,7 +32,7 @@ class ContractRegister
         return $this->kryptonPay->getContract($this->apiContext, $idContrato);
     }
 
-    public function getContractByCnpfCnpj($cpfCnpj)
+    public function getContractByCpfCnpj($cpfCnpj)
     {
         return $this->kryptonPay->getContractByCpfCnpj($this->apiContext, $cpfCnpj);
     }
