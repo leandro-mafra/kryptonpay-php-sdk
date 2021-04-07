@@ -41,4 +41,9 @@ class ContractRegister
     {
         return $this->kryptonPay->allContracts($this->apiContext);
     }
+
+    public function allSubContracts($idContractFather)
+    {
+        return $this->kryptonPay->allSubContracts($this->apiContext, $idContractFather);
+    }
 }

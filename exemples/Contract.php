@@ -61,3 +61,6 @@ var_dump($returnGetContract);
 $returnAllContracts = $contract->allContracts();
 var_dump($returnAllContracts);
 
+// Buscar subContratos
+$returnAllContracts = $contract->allSubContracts(1);
+var_dump($returnAllContracts);
