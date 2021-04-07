@@ -76,9 +76,9 @@ class KryptonPay
         return $api->call($data);
     }
 
-    public static function allSubContracts(ApiContext $apiContext, $idContractFather)
+    public static function allSubContracts(ApiContext $apiContext, $idContractFather, $paramsString = '')
     {
-        $api = new Client($apiContext, 'GET', 'contracts/' . $idContractFather . 'subcontracts');
+        $api = new Client($apiContext, 'GET', 'contracts/' . $idContractFather . '/subcontracts' . $paramsString);
         return $api->call();
     }
 

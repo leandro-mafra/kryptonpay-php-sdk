@@ -62,5 +62,14 @@ $returnAllContracts = $contract->allContracts();
 var_dump($returnAllContracts);
 
 // Buscar subContratos
-$returnAllContracts = $contract->allSubContracts(1);
+$returnAllContracts = $contract->allSubContracts(1, null);
+var_dump($returnAllContracts);
+
+// Buscar subContratos com parametros
+
+$arrayParametros = [
+    'includes' => 'pessoa'
+];
+
+$returnAllContracts = $contract->allSubContracts(1, $arrayParametros);
 var_dump($returnAllContracts);
