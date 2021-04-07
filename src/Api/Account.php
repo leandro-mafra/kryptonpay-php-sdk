@@ -147,7 +147,7 @@ class Account extends DefaultModel
     {
         $newFieldsUsuario = new stdClass();
         $newFieldsUsuario->email    = $data->email;
-        $newFieldsUsuario->password = hash('sha512', $data->password);
+        $newFieldsUsuario->password = $data->password;
         $newFieldsUsuario->hash     = $newFieldsUsuario->password;
         $newFieldsUsuario->nome     = $data->name;
         $newFieldsUsuario->idioma   = 'pt-br';
