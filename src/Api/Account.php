@@ -132,12 +132,12 @@ class Account extends DefaultModel
         return $newFildsResponsible;
     }
 
-    public function translateFieldsContract()
+    public function translateFieldsContract($idTable = 1)
     {
         $newFieldsContract = new stdClass();
         $newFieldsContract->dataInicio   = date('Y-m-d');
         $newFieldsContract->dataValidade = date('Y-m-d', strtotime('+1 year'));
-        $newFieldsContract->idTabela     = 1;
+        $newFieldsContract->idTabela     = $idTable;
         $newFieldsContract->status       = 1;
 
         return $newFieldsContract;

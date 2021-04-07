@@ -26,12 +26,12 @@ class AccountRegister
         $this->bankAccount = new BankAccount();
     }
 
-    public function createAccount($accountPessoa, $accounteAddress ,$accountBankAccount, $newAccountPessoaResponsible)
+    public function createAccount($accountPessoa, $accounteAddress ,$accountBankAccount, $newAccountPessoaResponsible, $idTable = 1)
     {
         $ObjectAccount = new StdClass();
         $ObjectAccount->pessoa                   = $this->account->translateFieldsAccount($accountPessoa);
         $ObjectAccount->endereco                 = $this->address->translateFieldsAddress($accounteAddress);
-        $ObjectAccount->contrato                 = $this->account->translateFieldsContract();
+        $ObjectAccount->contrato                 = $this->account->translateFieldsContract($idTable);
         $ObjectAccount->contrato->dadosBancarios = $this->bankAccount->translateFieldsBankAccount($accountBankAccount);
         $ObjectAccount->usuario                  = $this->account->translateFieldsUsuario($accountPessoa);
 

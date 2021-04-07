@@ -56,5 +56,5 @@ $newAccountBank->setDigitAccount(9);
 // $newAccountBank->setOperation('123');
 
 $responsible = $newAccountPessoa->getTypePerson();
-$checkFields = $getAccount->createAccount($newAccountPessoa, $newAccountAddress, $newAccountBank, ($responsible == 1) ? null : $newAccountPessoaResponsible);
+$checkFields = $getAccount->createAccount($newAccountPessoa, $newAccountAddress, $newAccountBank, ($responsible == 1) ? null : $newAccountPessoaResponsible, 1);
 var_dump($checkFields);
