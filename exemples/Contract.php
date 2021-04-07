@@ -73,3 +73,12 @@ $arrayParametros = [
 
 $returnAllContracts = $contract->allSubContracts(1, $arrayParametros);
 var_dump($returnAllContracts);
+
+// Buscar subContratos ID com parametros
+
+$arrayParametros = [
+    'includes' => 'pessoa'
+];
+
+$returnAllContracts = $contract->allSubContractById(1, 1, $arrayParametros);
+var_dump($returnAllContracts);
