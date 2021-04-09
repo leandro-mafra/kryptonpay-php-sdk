@@ -1,4 +1,4 @@
-<?php namespace KryptonPay\Models;
+<?php namespace KryptonPay\Models\Transaction;
 
 use KryptonPay\Models\DefaultModel;
 
