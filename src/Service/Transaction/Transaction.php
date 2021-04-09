@@ -21,7 +21,6 @@ class Transaction
     {
         $this->transacao->tipoPagamento = $this->apiContext->getTransaction()->getPaymentType();
         $this->transacao->referencia = $this->apiContext->getTransaction()->getReference();
-        $this->transacao->id = $this->apiContext->getId()->getId();
         $this->transacao->aplicacao = $this->apiContext->getTransaction()->getApplication();
         $this->transacao->assumeTaxa = $this->apiContext->getTransaction()->getAssumeTax();
         $this->transacao->tabelaReferencia = $this->apiContext->getTransaction()->getReferenceTable();
@@ -34,17 +33,17 @@ class Transaction
 
     protected function setModelPayer()
     {
-        $this->transacao->pagador->tipo = $this->apiContext->getTransaction()->getPayer()->getType();
-        $this->transacao->pagador->nome = $this->apiContext->getTransaction()->getPayer()->getName();
+        $this->transacao->pagador->tipo = $this->apiContext->getTransaction()->getPayer()->getTipo();
+        $this->transacao->pagador->nome = $this->apiContext->getTransaction()->getPayer()->getNome();
         $this->transacao->pagador->email = $this->apiContext->getTransaction()->getPayer()->getEmail();
         $this->transacao->pagador->celular = $this->apiContext->getTransaction()->getPayer()->getPhone();
 
-        if ($this->apiContext->getTransaction()->getPayer()->getType() == ApiContext::PERSON_NATURAL) {
+        if ($this->apiContext->getTransaction()->getPayer()->getTipo() == ApiContext::PERSON_NATURAL) {
             $this->transacao->pagador->cpf = $this->apiContext->getTransaction()->getPayer()->getIdentity();
-            $this->transacao->pagador->dataNascimento = $this->apiContext->getTransaction()->getPayer()->getBirthDate();
+            $this->transacao->pagador->dataNascimento = $this->apiContext->getTransaction()->getPayer()->getDataNascimento();
         } else {
             $this->transacao->pagador->cnpj = $this->apiContext->getTransaction()->getPayer()->getIdentity();
-            $this->transacao->pagador->nomeFantasia = $this->apiContext->getTransaction()->getPayer()->getFantasyName();
+            $this->transacao->pagador->nomeFantasia = $this->apiContext->getTransaction()->getPayer()->getNomeFantasia();
         }
     }
 
