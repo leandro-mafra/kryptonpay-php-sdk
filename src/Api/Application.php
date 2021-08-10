@@ -10,7 +10,7 @@ class Application extends DefaultModel
     private $nome;
     private $url;
     private $applicationKey;
-    private $applicationMain;
+    private $default;
     private $contract;
 
     public function setId( int $id)
@@ -23,9 +23,9 @@ class Application extends DefaultModel
         $this->nome = $nome;
     }
 
-    public function setApplicationMain( bool $applicationMain)
+    public function setDefault( bool $default)
     {
-        $this->applicationMain = $applicationMain;
+        $this->default = $default;
     }
 
     public function setUrl(string $url)
@@ -53,9 +53,9 @@ class Application extends DefaultModel
         return $this->nome;
     }
 
-    public function getApplicationMain()
+    public function getDefault()
     {
-        return $this->applicationMain;
+        return $this->default;
     }
 
     public function getUrl()

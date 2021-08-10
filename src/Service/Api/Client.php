@@ -25,8 +25,7 @@ class Client
         $this->apiContext = $apiContext;
 
         if ($this->apiContext->getIsSandbox()) {
-            $this->url = 'http://gateway-local-api/';
-//            $this->url = 'https://homologacao.api.kryptonpay.com.br/';
+           $this->url = 'https://homologacao.api.kryptonpay.com.br/';
         }
 
         $this->method = $method;

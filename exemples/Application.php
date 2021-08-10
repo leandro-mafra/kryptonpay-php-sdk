@@ -20,7 +20,7 @@ $application = new ApplicationRegister($apiContext);
 $createApplication = new Application();
 $createApplication->setNome('teste1122212211');
 $createApplication->setUrl('http://4fs12fff22a2a112a2.com.br');
-$createApplication->setApplicationMain(true);  // se for a sua aplicação principal, setar true se não, setar false, válido no novo registro e no editar
+$createApplication->setDefault(true);  // se for a sua aplicação principal, setar true se não, setar false, válido no novo registro e no editar
 $createApplication->setApplicationKey('12312abc123abc123abc1');
 $createApplication->setContract(5);
 
@@ -33,7 +33,7 @@ var_dump($createApplication);
 //$editApplication->setId(122);  // se for Edit, precisa preencher, se for novo, comentar a linha
 //$editApplication->setNome('teste1122212211');
 //$editApplication->setUrl('http://4fs12fff22a2a112a2.com.br');
-//$editApplication->setApplicationMain(true);  // se for a sua aplicação principal, setar true se não, setar false, válido no novo registro e no editar
+//$editApplication->setDefault(true);  // se for a sua aplicação principal, setar true se não, setar false, válido no novo registro e no editar
 //$editApplication->setApplicationKey('12312abc123abc123abc1');
 //$editApplication->setContract(5);
 //
