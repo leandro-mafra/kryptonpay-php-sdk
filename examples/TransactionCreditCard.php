@@ -16,7 +16,7 @@ use KryptonPay\Api\Transaction;
 
 $apiContext = new ApiContext();
 $apiContext->setIsSandbox(true);
-$apiContext->setApiToken('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5rcnlwdG9ucGF5LmNvbS5ici91c2Vycy8yL3Rva2VuIiwiaWF0IjoxNTc1NDg1NTc0LCJuYmYiOjE1NzU0ODU1NzQsImp0aSI6InBDeUdZS2ZkajlrOGasd44eWkiLCJzdWIiOjIsInBydiI6IjIasdzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRaasdiN2E1OTc2ZjciLCJs2123Y2wiOiJwdC1iciIsInRrbiI6dHJ1ZSwiZGF0ZXRpbWUiOiIhdfgyMDE5LTEyLTA0VDE4OjUyOjU0KzAwMDAifQ.MF_Zeg7whvyk9gxs7oi3Gk9kdefg0WvlSNbSokRwCyQ');
+$apiContext->setApiToken('seu_token');
 
 $transaction = new Transaction();
 $transaction->setIsQuickSale(false);
