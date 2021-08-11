@@ -12,6 +12,8 @@ class Address extends DefaultModel
     private $stateInitials;
     private $cityName;
     private $countryName;
+    private $idCountry;
+    private $foreignAddress;
 
     public function setStreet($street)
     {
@@ -92,4 +94,37 @@ class Address extends DefaultModel
     {
         return $this->countryName;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIdCountry()
+    {
+        return $this->idCountry;
+    }
+
+    /**
+     * @param mixed $idCountry
+     */
+    public function setIdCountry($idCountry)
+    {
+        $this->idCountry = $idCountry;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getForeignAddress()
+    {
+        return $this->foreignAddress;
+    }
+
+    /**
+     * @param mixed $foreignAddress
+     */
+    public function setForeignAddress($foreignAddress)
+    {
+        $this->foreignAddress = $foreignAddress;
+    }
+
 }

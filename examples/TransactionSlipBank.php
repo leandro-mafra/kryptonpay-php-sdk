@@ -17,7 +17,7 @@ use KryptonPay\Api\Transaction;
 
 $apiContext = new ApiContext();
 $apiContext->setIsSandbox(true);
-$apiContext->setApiToken('eyJ0eXAiOiJKV1QiLCJhbGc213iOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwasdasaS5rcnlwdG9ucGF5LmNvbS5ici91c2Vycy8yL3Rva2VuIiwiaWF0IjoxNTc1NDg1NThgc0LCJuYmYiOjEda1NzU0ODU1NzQsImp0aSI6InBDeUdZS2ZkajlrOG44eWkiLCJzdWIiOjIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjciLCJsY2wiOiJwdC1iciIsInRrbiI6dHJ1ZSwiZGF0ZXa23RpbWUiOiIyMDE5LTEyLTA0VDE4OjUyOjU0KzAwMDAifQ.MF_Zeg7whvyk9gxs7oi3Gk9kdefg0WasdvlSNbSokRwCyQ');
+$apiContext->setApiToken('seu_token');
 
 $transaction = new Transaction();
 $transaction->setPaymentType(ApiContext::SLIPBANK);

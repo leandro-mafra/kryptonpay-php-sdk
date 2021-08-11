@@ -40,7 +40,19 @@ class Endereco extends DefaultModel
     public $cidade;
 
     /**
-     * @var string pais
+     * @var int pais
      */
     public $pais;
+
+    /**
+     * ID do Pais
+     * @var int
+     */
+    public $idPais;
+
+    /**
+     * Endereço Exterior
+     * @var bool
+     */
+    public $enderecoExterior;
 }

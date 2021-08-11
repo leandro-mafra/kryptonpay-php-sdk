@@ -13,6 +13,7 @@ class ApiContext extends DefaultModel
     private $token;
     private $isSandBox = false;
     private $transaction;
+    private $data;
 
     public function __construct()
     {
@@ -33,6 +34,16 @@ class ApiContext extends DefaultModel
         $this->transaction = $transaction;
     }
 
+    public function setOpenAccount(OpenAccount $openAccount)
+    {
+        $this->data = $openAccount;
+    }
+
+    public function setApplication(Application $application)
+    {
+        $this->data = $application;
+    }
+
     public function getApiToken()
     {
         return $this->token;
@@ -46,5 +57,15 @@ class ApiContext extends DefaultModel
     public function getTransaction()
     {
         return $this->transaction;
+    }
+
+    public function getOpenAccount() : OpenAccount
+    {
+        return $this->data;
+    }
+
+    public function getApplication() : Application
+    {
+        return $this->data;
     }
 }

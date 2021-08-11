@@ -33,4 +33,26 @@ class KryptonPay
         return $api->call();
     }
 
+    public static function openAccount(ApiContext $apiContext)
+    {
+
+        $openAccount = new \KryptonPay\Service\Transaction\Module\OpenAccount($apiContext);
+        $data = $openAccount->getDataTranform();
+
+        $api = new Client($apiContext, 'POST', 'users/openAccount');
+
+        return $api->call($data);
+    }
+
+    public static function createApplication(ApiContext $apiContext, int $idContract)
+    {
+
+        $application = new \KryptonPay\Service\Transaction\Module\Application($apiContext);
+        $data = $application->getDataTranform();
+
+        $api = new Client($apiContext, 'POST', sprintf('contracts/%s/applications', $idContract));
+
+        return $api->call($data);
+    }
+
 }
