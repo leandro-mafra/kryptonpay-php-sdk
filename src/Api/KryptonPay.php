@@ -32,6 +32,27 @@ class KryptonPay
 
         return $api->call();
     }
+    
+    public static function getTransactions(ApiContext $apiContext, array $filter)
+    {
+        $filters = [];
+        if (isset($filter['dataPagamentoInicio']) && $filter['dataPagamentoInicio'] != '') {
+            $filters['dataPagamentoInicio'] = $filter['dataPagamentoInicio'];
+        }
+        if (isset($filter['dataPagamentoFim']) && $filter['dataPagamentoFim'] != '') {
+            $filters['dataPagamentoFim'] = $filter['dataPagamentoFim'];
+        }
+        if (isset($filter['limit']) && $filter['limit'] != '') {
+            $filters['limit'] = $filter['limit'];
+        }
+        if (isset($filter['page']) && $filter['page'] != '') {
+            $filters['page'] = $filter['page'];
+        }
+
+        $api = new Client($apiContext, 'GET', 'transactions?' . http_build_query($filters));
+
+        return $api->call();
+    }
 
     public static function openAccount(ApiContext $apiContext)
     {
@@ -54,5 +75,4 @@ class KryptonPay
 
         return $api->call($data);
     }
-
 }
