@@ -47,10 +47,8 @@ class OpenAccount
             $this->data->pessoa->nomeFantasia = $person->getFantasyName();
 
             $this->data->pessoa->responsavel->tipo = $person->getResponsible()->getType();
-            $this->data->pessoa->responsavel->nome = $person->getResponsible()->getName();;
+            $this->data->pessoa->responsavel->nome = $person->getResponsible()->getName();
             $this->data->pessoa->responsavel->email = $person->getResponsible()->getEmail();
-            $this->data->pessoa->responsavel->dataNascimento = $person->getResponsible()->getBirthday();
-            $this->data->pessoa->responsavel->cpf = $person->getResponsible()->getCpf();
 
         }
     }
