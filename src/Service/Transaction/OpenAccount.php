@@ -49,6 +49,7 @@ class OpenAccount
             $this->data->pessoa->responsavel->tipo = $person->getResponsible()->getType();
             $this->data->pessoa->responsavel->nome = $person->getResponsible()->getName();
             $this->data->pessoa->responsavel->email = $person->getResponsible()->getEmail();
+            $this->data->pessoa->responsavel->cnpj = $person->getResponsible()->getCnpj();
 
         }
     }
