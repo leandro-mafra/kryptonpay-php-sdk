@@ -6,6 +6,7 @@ class ApiContext extends DefaultModel
 {
     public const SLIPBANK = 1;
     public const CREDIT_CARD = 2;
+    public const PIX = 4;
 
     public const PERSON_NATURAL = 1;
     public const PERSON_LEGAL = 2;

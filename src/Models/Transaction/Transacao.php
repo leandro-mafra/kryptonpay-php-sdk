@@ -55,6 +55,13 @@ class Transacao extends DefaultModel
     /**
      * Itens.
      *
+     * @var string App\Models\Transaction\Pix
+     */
+    public $pix;
+
+    /**
+     * Itens.
+     *
      * @var string App\Models\Transaction\Cartao
      */
     public $cartao;
@@ -70,6 +77,7 @@ class Transacao extends DefaultModel
         $this->itens = [];
         $this->split = [];
         $this->boleto = new Boleto();
+        $this->pix = new Pix();
         $this->cartao = new Cartao();
     }
 }
