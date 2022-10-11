@@ -3,6 +3,7 @@
 namespace KryptonPay\Api;
 
 use KryptonPay\Service\Api\Client;
+use KryptonPay\Service\Transaction\Module\Pix;
 use KryptonPay\Service\Transaction\Module\CreditCard;
 use KryptonPay\Service\Transaction\Module\SlipBank;
 
@@ -17,6 +18,9 @@ class KryptonPay
                 break;
             case ApiContext::CREDIT_CARD:
                 $payment = new CreditCard($apiContext);
+                break;
+            case ApiContext::PIX:
+                $payment = new Pix($apiContext);
                 break;
         }
 

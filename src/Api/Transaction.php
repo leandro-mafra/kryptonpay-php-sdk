@@ -15,6 +15,7 @@ class Transaction extends DefaultModel
     private $itens = [];
     private $creditCard;
     private $slip;
+    private $pix;
     private $split = [];
     private $address;
 
@@ -71,6 +72,11 @@ class Transaction extends DefaultModel
     public function setSlip(Slip $slip)
     {
         $this->slip = $slip;
+    }
+
+    public function setPix(Pix $pix)
+    {
+        $this->pix = $pix;
     }
 
     public function addSplit(Split $split)
@@ -136,6 +142,11 @@ class Transaction extends DefaultModel
     public function getSlip()
     {
         return $this->slip;
+    }
+
+    public function getPix()
+    {
+        return $this->pix;
     }
 
     public function getSplit()
