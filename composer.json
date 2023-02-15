@@ -1,5 +1,5 @@
 {
-    "name": "kryptonpay/kryptonpay-php-sdk",
+    "name": "leandro-mafra/kryptonpay-php-sdk",
     "type": "library",
     "description": "Integração com API Krypton Pay em PHP",
     "homepage": "https://kryptonpay.com.br/",
